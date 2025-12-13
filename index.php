@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   --primary-dark: #062342ff;
   --secondary-dark: #100e77ff;
   --accent-muted: #305669;
-  --neutral-base: #d8dbe1ff;
+  --neutral-base: #CDE8E5;
 }
 * { box-sizing: border-box; }
 body { font-family: Arial, sans-serif; background: var(--neutral-base); margin:0; padding:0; }
