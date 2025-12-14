@@ -21,17 +21,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
-        if ($user && password_verify($password, $user['password'])) {
-            session_regenerate_id(true);
-            $_SESSION['role'] = $role;
-            if ($role === 'student') $_SESSION['student_id'] = $user['id'];
-            if ($role === 'company') $_SESSION['company_id'] = $user['id'];
-            if ($role === 'admin') $_SESSION['admin_id'] = $user['id'];
+      if ($user && password_verify($password, $user['password'])) {
+    session_regenerate_id(true);
+    $_SESSION['role'] = $role;
+    if ($role === 'student') $_SESSION['student_id'] = $user['id'];
+    if ($role === 'company') $_SESSION['company_id'] = $user['id'];
+    if ($role === 'admin') $_SESSION['admin_id'] = $user['id'];
 
-            $redirect = ($role === 'student') ? 'student/dashboard.php' :
-                        (($role === 'company') ? 'company/dashboard.php' : 'admin/dashboard.php');
-            header("Location: $redirect");
-            exit;
+    $redirect = ($role === 'student') ? 'student/dashboard.php' :
+                (($role === 'company') ? 'company/dashboard.php' : 'admin/dashboard.php');
+    header("Location: $redirect");
+    exit;
         } else {
             $error = "Invalid credentials";
         }
@@ -324,42 +324,41 @@ footer span{
   <h1>CareerMatch</h1>
   <p>Connecting Talent With Opportunity</p>
 </header>
-
 <!-- ===== STUDENT ===== -->
 <section class="section">
   <div class="text feature-box">
-  <h2>For Students</h2>
-  <p class="feature-subtitle">
-    Start your career journey with real-world opportunities.
-  </p>
+    <h2>For Students</h2>
+    <p class="feature-subtitle">
+      Start your career journey with real-world opportunities.
+    </p>
+    <ul>
+      <li>Discover internships easily</li>
+      <li>Apply in one click</li>
+      <li>Track application status</li>
+      <li>Build your career early</li>
+    </ul>
+    <a href="register_student.php" class="reg-btn">Register as Student</a>
+  </div>
 
-  <ul>
-    <li>Discover internships easily</li>
-    <li>Apply in one click</li>
-    <li>Track application status</li>
-    <li>Build your career early</li>
-  </ul>
-
-  <a href="register_student.php" class="reg-btn">Register as Student</a>
-</div>
   <div class="image-box">
     <img src="assets/images/student.png" alt="Students" class="feature-img">
   </div>
 </section>
+
 <!-- ===== COMPANY ===== -->
 <section class="section reverse">
   <div class="text feature-box">
     <h2>For Companies</h2>
     <p class="feature-subtitle">
-      Find motivated talent and build your future workforce.
+      Find the right talent to grow your business.
     </p>
     <ul>
       <li>Post internships quickly</li>
-      <li>Manage applicants easily</li>
-      <li>Find skilled students</li>
+      <li>Manage applicants efficiently</li>
+      <li>Discover skilled students</li>
       <li>Grow your talent pipeline</li>
     </ul>
- <a href="register_company.php" class="reg-btn">Register as Company</a>
+    <a href="register_company.php" class="reg-btn">Register as Company</a>
   </div>
 
   <div class="image-box">
@@ -369,41 +368,40 @@ footer span{
 
 <!-- ===== LOGIN ===== -->
 <div class="login-area">
+  <?php if(!empty($error)): ?>
+  <div class="error-msg"><?=htmlspecialchars($error)?></div>
+  <?php endif; ?>
 
-<?php if(!empty($error)): ?>
-<div class="error-msg"><?=htmlspecialchars($error)?></div>
-<?php endif; ?>
+  <h3>Login</h3>
+  <form method="post">
+    <div class="form-row">
+      <label>Role</label>
+      <select name="role" required>
+        <option value="">-- Select Role --</option>
+        <option value="student">Student</option>
+        <option value="company">Company</option>
+        <option value="admin">Admin</option>
+      </select>
+    </div>
 
-<h3>Login</h3>
+    <div class="form-row">
+      <label>Email / Username</label>
+      <input class="input" name="email" required>
+    </div>
 
-<form method="post">
-  <div class="form-row">
-    <label>Role</label>
-    <select name="role" required>
-      <option value="">-- Select Role --</option>
-      <option value="student">Student</option>
-      <option value="company">Company</option>
-      <option value="admin">Admin</option>
-    </select>
-  </div>
+    <div class="form-row">
+      <label>Password</label>
+      <input type="password" class="input" name="password" required>
+    </div>
 
-  <div class="form-row">
-    <label>Email / Username</label>
-    <input class="input" name="email" required>
-  </div>
-
-  <div class="form-row">
-    <label>Password</label>
-    <input type="password" class="input" name="password" required>
-  </div>
-
-  <button type="submit">Login</button>
-</form>
+    <button type="submit">Login</button>
+  </form>
 </div>
+
 
 <!-- ===== FOOTER ===== -->
 <footer>
-  © <?=date('Y')?> <span>CareerMatch</span><br> Built for Learning & Growth
+  © <?=date('Y')?> <span>CareerMatch</span> | Internship Management System
 </footer>
 
 </body>

@@ -55,3 +55,22 @@ CREATE TABLE IF NOT EXISTS admins (
 INSERT INTO admins (username, password)
 VALUES ('admin', 'admin123')
 ON DUPLICATE KEY UPDATE username=username;
+
+-- Update Students Table
+ALTER TABLE students
+ADD COLUMN phone VARCHAR(20) AFTER course,
+ADD COLUMN university VARCHAR(150) AFTER phone,
+ADD COLUMN year_of_study INT AFTER university,
+ADD COLUMN skills TEXT AFTER year_of_study,
+ADD COLUMN resume_link VARCHAR(255) AFTER skills,
+ADD COLUMN github_link VARCHAR(255) AFTER resume_link,
+ADD COLUMN linkedin_link VARCHAR(255) AFTER github_link,
+ADD COLUMN bio TEXT AFTER linkedin_link;
+
+-- Update Companies Table
+ALTER TABLE companies
+ADD COLUMN website VARCHAR(255) AFTER description,
+ADD COLUMN phone VARCHAR(20) AFTER website,
+ADD COLUMN industry VARCHAR(100) AFTER phone,
+ADD COLUMN location VARCHAR(150) AFTER industry,
+ADD COLUMN logo VARCHAR(255) AFTER location;
