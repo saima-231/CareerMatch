@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 <head>
 <title>Edit Internship</title>
 <style>
-body{font-family:Arial;background:#f4f6f8}
+body{font-family:Arial;background:#e1e4e7}
 .container{max-width:600px;margin:50px auto;background:white;padding:24px;border-radius:14px}
 input,textarea{width:100%;padding:10px;margin-bottom:12px}
 button{background:#091d3e;color:white;padding:12px;border:none;border-radius:8px}
@@ -32,8 +32,8 @@ button{background:#091d3e;color:white;padding:12px;border:none;border-radius:8px
 <h2>Edit Internship</h2>
 <form method="post">
 <input name="title" value="<?=$i['title']?>" required>
-<textarea name="description"><?=$i['description']?></textarea>
 <input name="duration" value="<?=$i['duration']?>">
+<textarea name="description"><?=$i['description']?></textarea>
 <button>Update</button>
 </form>
 </div>

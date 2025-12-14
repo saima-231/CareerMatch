@@ -14,7 +14,6 @@ if(!$internship_id){
     echo "No internship selected.";
     exit;
 }
-
 // Fetch internship details
 $stmt = $pdo->prepare("SELECT i.*, c.name AS company_name FROM internships i JOIN companies c ON i.company_id=c.id WHERE i.id=?");
 $stmt->execute([$internship_id]);
@@ -46,7 +45,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <meta charset="utf-8">
 <title>Apply for Internship</title>
 <style>
-body{font-family:Arial;background:#f4f6f8;margin:0}
+body{font-family:Arial;background:#e1e4e7;margin:0}
 .container{max-width:600px;margin:50px auto;padding:20px;background:white;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.08);}
 h2{color:#091d3e;margin-bottom:10px;}
 p{margin:8px 0;}

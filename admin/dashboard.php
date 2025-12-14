@@ -32,12 +32,12 @@ $recent_apps = $pdo->query('
 <style>
 :root{
   --primary:#091d3e;
-  --secondary:#183B4E;
-  --accent:#59879f;
-  --bg:#f4f6f8;
+  --secondary:#4545a7d6;
+  --accent:#d3e0ee;
+  --bg:#e1e4e7;
 }
 body{margin:0;font-family:Arial;background:var(--bg);color:#222;}
-header{background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;padding:30px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,0.15);}
+header{background:var(--primary);color:white;padding:30px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,0.15);}
 header h1{margin:0;font-size:2rem;}
 .container{max-width:1100px;margin:40px auto;padding:0 20px;}
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:30px;}

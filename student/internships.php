@@ -20,7 +20,7 @@ $internships = $pdo->query("
 <head>
 <title>Available Internships</title>
 <style>
-body{font-family:Arial;background:#f4f6f8;margin:0}
+body{font-family:Arial;background:#e1e4e7;margin:0}
 .container{max-width:1100px;margin:40px auto;padding:20px}
 .card{background:white;border-radius:14px;padding:20px;box-shadow:0 8px 20px rgba(0,0,0,.08);margin-bottom:20px;display:grid;grid-template-columns:120px 1fr;gap:20px}
 img{width:100px}

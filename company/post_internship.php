@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 <head>
 <title>Post Internship</title>
 <style>
-body{font-family:Arial;background:#f4f6f8}
+body{font-family:Arial;background:#e1e4e7}
 .container{max-width:600px;margin:50px auto;background:white;padding:24px;border-radius:14px;box-shadow:0 10px 25px rgba(0,0,0,.1)}
 input,textarea{width:100%;padding:10px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc}
 button{background:#091d3e;color:white;border:none;padding:12px;border-radius:8px;width:100%}

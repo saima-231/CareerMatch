@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'db.php'; // Ensure this file connects $pdo
+require_once 'db.php';
 
 $error = "";
 
@@ -100,7 +100,6 @@ header p{
   overflow:hidden; 
 }
 
-
 .section.reverse .text{
   order:2;
 }
@@ -124,10 +123,9 @@ header p{
   border:1.5px solid var(--primary);
   border-radius:22px;
   background:white;
-  padding:40px 30px; /* overrides padding nicely */
+  padding:40px 30px;
 }
 
-/* Hover polish (optional but recommended) */
 .section:hover{
   box-shadow:0 12px 28px rgba(9,29,62,0.15);
   transition:0.3s ease;
@@ -260,7 +258,6 @@ button:hover{
   transform:translateY(-2px);
 }
 
-
 /* ===== FOOTER ===== */
 footer{
   margin-top:80px;
@@ -281,7 +278,6 @@ footer span{
 }
 
 /* ===== RESPONSIVE BREAKPOINTS ===== */
-
 /* Tablets */
 @media (max-width: 900px){
   .section{

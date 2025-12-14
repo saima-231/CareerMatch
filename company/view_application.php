@@ -34,7 +34,7 @@ $apps = $stmt->fetchAll();
 <head>
 <title>Applications</title>
 <style>
-body{font-family:Arial;background:#f4f6f8}
+body{font-family:Arial;background:#e1e4e7}
 .container{max-width:900px;margin:40px auto}
 .card{background:white;padding:16px;border-radius:12px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
 .btn{padding:6px 12px;border-radius:6px;text-decoration:none;color:white;font-size:0.9rem}
