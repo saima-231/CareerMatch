@@ -43,76 +43,372 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>CareerMatch — Login</title>
+<title>CareerMatch</title>
+
 <style>
-:root {
-  --primary-dark: #062342ff;
-  --secondary-dark: #100e77ff;
-  --accent-muted: #305669;
-  --neutral-base: #CDE8E5;
+:root{
+  --primary:#091d3e;
+  --secondary:#4545a7d6;
+  --accent:#d3e0ee;
+  --bg:#e1e4e7;
 }
-* { box-sizing: border-box; }
-body { font-family: Arial, sans-serif; background: var(--neutral-base); margin:0; padding:0; }
-.container { max-width: 500px; margin:60px auto; padding:24px; background:white; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.06); }
-.header { text-align:center; margin-bottom:20px; }
-.header h1 { margin:0; font-size:2rem; }
-.btn { padding:10px 16px; border-radius:8px; border:none; cursor:pointer; font-weight:600; text-decoration:none; display:inline-block; margin-right:5px; }
-.btn-primary { background: var(--primary-dark); color:white; }
-.btn-primary:hover { background: var(--secondary-dark); }
-.btn-secondary { background: var(--secondary-dark); color:white; }
-.btn-secondary:hover { background: var(--primary-dark); }
-.btn-ghost { background:transparent; border:1px solid var(--accent-muted); color: var(--primary-dark); }
-.form-row { margin-bottom:12px; }
-.input, select { width:100%; padding:10px; border-radius:8px; border:1px solid var(--accent-muted); outline:none; }
-.input:focus, select:focus { border-color: var(--secondary-dark); box-shadow:0 0 0 3px rgba(49,48,77,0.08); }
-.card { padding:16px; border-radius:10px; border:1px solid var(--accent-muted); background:linear-gradient(180deg, rgba(240,236,229,0.6), #fff); margin-bottom:12px; }
-.error-msg { border-left:4px solid #e74c3c; color:#e74c3c; margin-top:12px; padding:10px; }
-.register-links { text-align:center; margin-top:12px; }
-.register-links a { text-decoration:none; margin:0 5px; padding:6px 12px; border-radius:6px; border:1px solid var(--secondary-dark); color: var(--primary-dark); }
-.register-links a:hover { background: var(--secondary-dark); color:white; }
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:var(--bg);
+  color:#222;
+  line-height:1.6;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:var(--primary);
+  color:white;
+  padding:50px 20px;
+  text-align:center;
+  box-shadow:0 6px 20px rgba(43, 41, 41, 0.15);
+}
+
+header h1{
+  margin:0;
+  font-size:clamp(2rem, 5vw, 2.8rem);
+}
+
+header p{
+  margin-top:10px;
+  font-size:clamp(1rem, 3vw, 1.2rem);
+  opacity:0.9;
+}
+
+/* ===== SECTIONS ===== */
+.section{
+  max-width:1100px;
+  margin:60px auto;
+  padding:40px 30px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+  border:1.5px solid var(--primary);
+  border-radius:22px;
+  background:white;
+  overflow:hidden; 
+}
+
+
+.section.reverse .text{
+  order:2;
+}
+
+.text h2{
+  color:var(--primary);
+  font-size:clamp(1.4rem, 4vw, 2rem);
+}
+
+.text ul{
+  padding-left:18px;
+}
+
+.text li{
+  margin-bottom:10px;
+  font-size:1rem;
+}
+
+/* ===== Section Border Enhancement ===== */
+.section{
+  border:1.5px solid var(--primary);
+  border-radius:22px;
+  background:white;
+  padding:40px 30px; /* overrides padding nicely */
+}
+
+/* Hover polish (optional but recommended) */
+.section:hover{
+  box-shadow:0 12px 28px rgba(9,29,62,0.15);
+  transition:0.3s ease;
+}
+
+/* ===== Feature Images ===== */
+.feature-box{
+  background:var(--accent);
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(59, 62, 65, 0.06);
+}
+
+.feature-subtitle{
+  margin-top:8px;
+  margin-bottom:16px;
+  color:#555;
+  font-size:0.95rem;
+}
+
+.section:not(:last-child){
+  border-bottom:1px solid rgba(0,0,0,0.05);
+  padding-bottom:60px;
+}
+
+/* ===== Image Wrapper ===== */
+.image-box{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding: 10px;
+}
+
+/* Balance image size */
+.feature-img{
+  max-width:100%;
+  display:block;
+  transition:transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Center image on mobile */
+@media (max-width:768px){
+  .feature-img{
+    margin:auto;
+  }
+}
+
+/* ===== LOGIN ===== */
+.login-area{
+  max-width:420px;
+  margin:70px auto;
+  background:white;
+  padding:26px;
+  border-radius:14px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.login-area h3{
+  text-align:center;
+  margin-bottom:20px;
+  color:var(--primary);
+}
+
+.form-row{
+  margin-bottom:14px;
+}
+
+label{
+  font-weight:bold;
+  font-size:0.9rem;
+  display:block;
+  margin-bottom:4px;
+}
+
+.input, select{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:1rem;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:8px;
+  background:var(--primary);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:1rem;
+}
+
+button:hover{
+  background:var(--secondary);
+}
+
+.error-msg{
+  background:#fdecea;
+  border-left:4px solid #e74c3c;
+  padding:10px;
+  margin-bottom:12px;
+  color:#c0392b;
+}
+
+/* ===== Register Buttons ===== */
+.register-links{
+  text-align:center;
+  margin-top:16px;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.reg-btn{
+  padding:10px 16px;
+  border-radius:8px;
+  border:2px solid var(--primary);
+  color:var(--primary);
+  text-decoration:none;
+  font-weight:bold;
+  transition:all 0.3s ease;
+}
+
+.reg-btn:hover{
+  background:var(--primary);
+  color:white;
+  transform:translateY(-2px);
+}
+
+
+/* ===== FOOTER ===== */
+footer{
+  margin-top:80px;
+  background:var(--primary);
+  color:#bbb;
+  text-align:center;
+  padding:22px 15px;
+  font-size:0.9rem;
+}
+
+footer span{
+  color:white;
+}
+
+.section:hover{
+  box-shadow:0 12px 28px rgba(9,29,62,0.15);
+  transition:0.3s ease;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Tablets */
+@media (max-width: 900px){
+  .section{
+    gap:30px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px){
+  .section{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .section.reverse .text{
+    order:0;
+  }
+
+  .text ul{
+    text-align:left;
+    display:inline-block;
+  }
+
+  header{
+    padding:40px 16px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 420px){
+  .login-area{
+    margin:40px 15px;
+    padding:20px;
+  }
+  footer{
+    font-size:0.8rem;
+  }
+}
 </style>
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <h1><span style="color:#091d3e !important;">CareerMatch</span></h1>
-        <h4><span style="color:#183B4E !important;">Connecting Talent With Opportunity</span></h4>
-    </div>
+<!-- ===== HEADER ===== -->
+<header>
+  <h1>CareerMatch</h1>
+  <p>Connecting Talent With Opportunity</p>
+</header>
 
-    <?php if(!empty($error)): ?>
-    <div class="card error-msg"><?=htmlspecialchars($error)?></div>
-    <?php endif; ?>
+<!-- ===== STUDENT ===== -->
+<section class="section">
+  <div class="text feature-box">
+  <h2>For Students</h2>
+  <p class="feature-subtitle">
+    Start your career journey with real-world opportunities.
+  </p>
 
-    <div class="card">
-        <h3>Login</h3>
-        <form method="post">
-            <div class="form-row">
-                <label>Role</label>
-                <select name="role" class="input" required>
-                    <option value="">--Select Role--</option>
-                    <option value="student">Student</option>
-                    <option value="company">Company</option>
-                    <option value="admin">Admin</option>
-                </select>
-            </div>
-            <div class="form-row">
-                <label>Email / Username</label>
-                <input type="text" name="email" class="input" required>
-            </div>
-            <div class="form-row">
-                <label>Password</label>
-                <input type="password" name="password" class="input" required>
-            </div>
-            <div class="form-row">
-                <button type="submit" class="btn btn-primary">Login</button>
-            </div>
-        </form>
-    </div>
+  <ul>
+    <li>Discover internships easily</li>
+    <li>Apply in one click</li>
+    <li>Track application status</li>
+    <li>Build your career early</li>
+  </ul>
 
-    <div class="register-links">
-        <a href="register_student.php">Register as Student</a>
-        <a href="register_company.php">Register as Company</a>
-    </div>
+  <a href="register_student.php" class="reg-btn">Register as Student</a>
 </div>
+  <div class="image-box">
+    <img src="assets/images/student.png" alt="Students" class="feature-img">
+  </div>
+</section>
+<!-- ===== COMPANY ===== -->
+<section class="section reverse">
+  <div class="text feature-box">
+    <h2>For Companies</h2>
+    <p class="feature-subtitle">
+      Find motivated talent and build your future workforce.
+    </p>
+    <ul>
+      <li>Post internships quickly</li>
+      <li>Manage applicants easily</li>
+      <li>Find skilled students</li>
+      <li>Grow your talent pipeline</li>
+    </ul>
+ <a href="register_company.php" class="reg-btn">Register as Company</a>
+  </div>
+
+  <div class="image-box">
+    <img src="assets/images/company.png" alt="Companies" class="feature-img">
+  </div>
+</section>
+
+<!-- ===== LOGIN ===== -->
+<div class="login-area">
+
+<?php if(!empty($error)): ?>
+<div class="error-msg"><?=htmlspecialchars($error)?></div>
+<?php endif; ?>
+
+<h3>Login</h3>
+
+<form method="post">
+  <div class="form-row">
+    <label>Role</label>
+    <select name="role" required>
+      <option value="">-- Select Role --</option>
+      <option value="student">Student</option>
+      <option value="company">Company</option>
+      <option value="admin">Admin</option>
+    </select>
+  </div>
+
+  <div class="form-row">
+    <label>Email / Username</label>
+    <input class="input" name="email" required>
+  </div>
+
+  <div class="form-row">
+    <label>Password</label>
+    <input type="password" class="input" name="password" required>
+  </div>
+
+  <button type="submit">Login</button>
+</form>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  © <?=date('Y')?> <span>CareerMatch</span><br> Built for Learning & Growth
+</footer>
+
 </body>
 </html>

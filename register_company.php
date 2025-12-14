@@ -1,62 +1,49 @@
 <?php
-session_start();
 require_once 'db.php';
-$error = "";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = trim($_POST['name'] ?? '');
-    $email = trim($_POST['email'] ?? '');
-    $password = $_POST['password'] ?? '';
-    $desc = trim($_POST['description'] ?? '');
+$error="";
 
-    if ($name && $email && $password) {
-        $hash = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $pdo->prepare('INSERT INTO companies (name,email,password,description) VALUES (?,?,?,?)');
-        try {
-            $stmt->execute([$name,$email,$hash,$desc]);
-            header('Location: index.php'); exit;
-        } catch (Exception $e) {
-            $error = 'Registration failed: '.$e->getMessage();
-        }
-    } else $error = 'Please fill all required fields';
+if($_SERVER['REQUEST_METHOD']=='POST'){
+    $hash=password_hash($_POST['password'],PASSWORD_DEFAULT);
+    try{
+        $stmt=$pdo->prepare("INSERT INTO companies(name,email,password,description) VALUES(?,?,?,?)");
+        $stmt->execute([$_POST['name'],$_POST['email'],$hash,$_POST['description']]);
+        header("Location: index.php");
+        exit;
+    }catch(Exception $e){
+        $error="Email already exists";
+    }
 }
 ?>
 
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
 <title>Company Registration</title>
 <style>
-:root {--primary-dark:#161a30;--secondary-dark:#31304d;--accent-muted:#b6bbc4;--neutral-base:#f0ece5;}
-body{font-family:Arial,sans-serif;background:var(--neutral-base);margin:0;padding:0;color:var(--primary-dark);}
-.container{max-width:500px;margin:60px auto;padding:24px;background:white;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06);}
-.header{text-align:center;margin-bottom:20px;}
-.header h1{margin:0;font-size:2rem;}
-.form-row{margin-bottom:12px;}
-.input{width:100%;padding:10px;border-radius:8px;border:1px solid var(--accent-muted);}
-.input:focus{border-color: var(--secondary-dark); box-shadow:0 0 0 3px rgba(49,48,77,0.08);}
-.btn{padding:10px 16px;border-radius:8px;border:none;cursor:pointer;font-weight:600;}
-.btn-secondary{background:var(--secondary-dark);color:white;}
-.btn-secondary:hover{background:var(--primary-dark);}
-.card{padding:16px;border-radius:10px;border:1px solid var(--accent-muted);background:linear-gradient(180deg, rgba(240,236,229,0.6), #fff);margin-bottom:12px;}
-.error-msg{border-left:4px solid #e74c3c;color:#e74c3c;margin-bottom:12px;padding-left:8px;}
+body{font-family:Arial;background:#f4f6f8}
+.container{max-width:500px;margin:50px auto;background:white;padding:24px;border-radius:14px}
+img{width:120px;display:block;margin:auto}
+input,textarea{width:100%;padding:12px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc}
+button{background:#091d3e;color:white;padding:12px;border:none;border-radius:8px;width:100%}
 </style>
 </head>
 <body>
+
 <div class="container">
-    <div class="header"><h1>Company Registration</h1></div>
-    <?php if(!empty($error)): ?>
-        <div class="card error-msg"><?=htmlspecialchars($error)?></div>
-    <?php endif; ?>
-    <form method="post" class="card">
-        <div class="form-row"><label>Company Name</label><input class="input" name="name" required></div>
-        <div class="form-row"><label>Email</label><input type="email" class="input" name="email" required></div>
-        <div class="form-row"><label>Password</label><input type="password" class="input" name="password" required></div>
-        <div class="form-row"><label>Description</label><textarea class="input" name="description"></textarea></div>
-        <div class="form-row"><button class="btn btn-secondary">Register</button></div>
-        <div class="form-row"><a href="index.php" class="btn btn-secondary" style="background:#555">Back to Login</a></div>
-    </form>
+<img src="assets/images/company.png">
+<h2>Company Registration</h2>
+
+<?php if($error): ?><p style="color:red"><?=$error?></p><?php endif; ?>
+
+<form method="post">
+<input name="name" placeholder="Company Name" required>
+<input name="email" type="email" placeholder="Email" required>
+<input name="password" type="password" placeholder="Password" required>
+<textarea name="description" placeholder="Company Description"></textarea>
+<button>Register</button>
+</form>
 </div>
+
 </body>
 </html>

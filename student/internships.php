@@ -2,59 +2,50 @@
 session_start();
 require_once '../db.php';
 
-if(!isset($_SESSION['role']) || $_SESSION['role']!=='student'){
+if(!isset($_SESSION['student_id'])){
     header('Location: ../index.php');
     exit;
 }
 
-$student_id = $_SESSION['student_id'];
-
-// Fetch all internships
-$stmt = $pdo->query('SELECT i.*, c.name as company_name FROM internships i JOIN companies c ON i.company_id=c.id ORDER BY i.created_at DESC');
-$internships = $stmt->fetchAll();
-
-// Fetch internships the student already applied for
-$sstmt = $pdo->prepare('SELECT internship_id FROM applications WHERE student_id=?');
-$sstmt->execute([$student_id]);
-$applied = $sstmt->fetchAll(PDO::FETCH_COLUMN);
+$internships = $pdo->query("
+    SELECT internships.*, companies.name AS company_name
+    FROM internships
+    JOIN companies ON internships.company_id = companies.id
+    ORDER BY internships.created_at DESC
+")->fetchAll();
 ?>
 
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
 <title>Available Internships</title>
 <style>
-body{font-family:Arial;background:#f0ece5;margin:0;padding:0;}
-.container{max-width:800px;margin:40px auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
-.card{padding:16px;border-radius:10px;border:1px solid #b6bbc4;background:#fff;margin-bottom:12px;}
-button{padding:8px 14px;border:none;border-radius:6px;background:#161a30;color:#fff;cursor:pointer;}
-button:hover{background:#31304d;}
-button[disabled]{background:#b6bbc4;cursor:not-allowed;}
-.small{font-size:0.9rem;color:#31304d;}
-a{color:#161a30;text-decoration:none;}
-form{display:inline-block;margin:0;}
+body{font-family:Arial;background:#f4f6f8;margin:0}
+.container{max-width:1100px;margin:40px auto;padding:20px}
+.card{background:white;border-radius:14px;padding:20px;box-shadow:0 8px 20px rgba(0,0,0,.08);margin-bottom:20px;display:grid;grid-template-columns:120px 1fr;gap:20px}
+img{width:100px}
+.btn{padding:8px 14px;border-radius:8px;background:#091d3e;color:white;text-decoration:none}
+.btn:hover{background:#183B4E}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 </style>
 </head>
 <body>
+
 <div class="container">
-<h2>Available Internships</h2>
-<p><a href="dashboard.php">Back to Dashboard</a></p>
+<div class="header">
+<h2>Internships</h2>
+<a href="dashboard.php" class="btn">Dashboard</a>
+</div>
 
 <?php foreach($internships as $i): ?>
 <div class="card">
+<img src="../assets/images/internship.png">
+<div>
 <h3><?=htmlspecialchars($i['title'])?></h3>
-<div class="small">Company: <?=htmlspecialchars($i['company_name'])?> — Duration: <?=htmlspecialchars($i['duration'])?></div>
-<p><?=nl2br(htmlspecialchars($i['description']))?></p>
-
-<?php if(in_array($i['id'],$applied)): ?>
-<button disabled>Already Applied</button>
-<?php else: ?>
-<form method="post" action="apply.php">
-<input type="hidden" name="internship_id" value="<?=$i['id']?>">
-<button>Apply</button>
-</form>
-<?php endif; ?>
+<p><b>Company:</b> <?=htmlspecialchars($i['company_name'])?></p>
+<p><?=htmlspecialchars($i['description'])?></p>
+<a class="btn" href="apply.php?id=<?=$i['id']?>">Apply</a>
+</div>
 </div>
 <?php endforeach; ?>
 

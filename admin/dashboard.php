@@ -7,7 +7,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=='admin'){
     exit;
 }
 
-// Get basic counts
+// Get counts
 $students = $pdo->query('SELECT COUNT(*) FROM students')->fetchColumn();
 $companies = $pdo->query('SELECT COUNT(*) FROM companies')->fetchColumn();
 $internships = $pdo->query('SELECT COUNT(*) FROM internships')->fetchColumn();
@@ -25,40 +25,47 @@ $recent_apps = $pdo->query('
 ?>
 
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>Admin Dashboard</title>
 <style>
-body{font-family:Arial;background:#f0ece5;margin:0;padding:0;}
-.container{max-width:900px;margin:40px auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
-.header h2{margin:0;}
-.btn{padding:8px 14px;border:none;border-radius:6px;background:#161a30;color:#fff;text-decoration:none;}
-.btn:hover{background:#31304d;}
-.card{padding:16px;border-radius:10px;border:1px solid #b6bbc4;background:#fff;margin-bottom:12px;}
+:root{
+  --primary:#091d3e;
+  --secondary:#183B4E;
+  --accent:#59879f;
+  --bg:#f4f6f8;
+}
+body{margin:0;font-family:Arial;background:var(--bg);color:#222;}
+header{background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;padding:30px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,0.15);}
+header h1{margin:0;font-size:2rem;}
+.container{max-width:1100px;margin:40px auto;padding:0 20px;}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:30px;}
+.card{background:white;padding:20px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.08);}
+.card h3{margin:0;margin-bottom:10px;color:var(--primary);}
 .table{width:100%;border-collapse:collapse;}
 .table th, .table td{padding:10px;border-bottom:1px solid #eee;text-align:left;}
-.small{font-size:0.9rem;color:#31304d;}
 .badge{padding:4px 8px;border-radius:6px;font-weight:600;}
 .badge-pending{background:#fff3cd;color:#856404;}
 .badge-accepted{background:#d4edda;color:#155724;}
 .badge-rejected{background:#f8d7da;color:#721c24;}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px;}
+.btn-logout{padding:8px 14px;border:none;border-radius:6px;background:var(--primary);color:white;text-decoration:none;}
+.btn-logout:hover{background:var(--secondary);}
+@media(max-width:768px){.stats-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-<div class="container">
-<div class="header">
-<h2>Admin Dashboard</h2>
-<a href="../logout.php" class="btn">Logout</a>
-</div>
+<header>
+<h1>Admin Dashboard</h1>
+<a href="../logout.php" class="btn-logout">Logout</a>
+</header>
 
+<div class="container">
 <div class="stats-grid">
-<div class="card"><h4>Students</h4><div class="small"><?= $students ?></div></div>
-<div class="card"><h4>Companies</h4><div class="small"><?= $companies ?></div></div>
-<div class="card"><h4>Internships</h4><div class="small"><?= $internships ?></div></div>
-<div class="card"><h4>Applications</h4><div class="small"><?= $apps ?></div></div>
+  <div class="card"><h3>Students</h3><p><?=$students?></p></div>
+  <div class="card"><h3>Companies</h3><p><?=$companies?></p></div>
+  <div class="card"><h3>Internships</h3><p><?=$internships?></p></div>
+  <div class="card"><h3>Applications</h3><p><?=$apps?></p></div>
 </div>
 
 <h3>Recent Applications</h3>
@@ -73,11 +80,11 @@ body{font-family:Arial;background:#f0ece5;margin:0;padding:0;}
 <td>
 <?php if($r['status']=='Pending'): ?><span class="badge badge-pending">Pending</span>
 <?php elseif($r['status']=='Accepted'): ?><span class="badge badge-accepted">Accepted</span>
-<?php else: ?><span class="badge badge-rejected">Rejected</span><?php endif; ?>
+<?php else:?><span class="badge badge-rejected">Rejected</span><?php endif;?>
 </td>
-<td class="small"><?=htmlspecialchars($r['applied_at'])?></td>
+<td><?=htmlspecialchars($r['applied_at'])?></td>
 </tr>
-<?php endforeach; ?>
+<?php endforeach;?>
 </tbody>
 </table>
 </div>
