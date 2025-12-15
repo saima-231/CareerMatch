@@ -1,8 +1,9 @@
 <?php
 session_start();
-require_once '../db.php';
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
 
-if(!isset($_SESSION['student_id'])){
+if (!isset($_SESSION['student_id'])) {
     header('Location: ../index.php');
     exit;
 }
@@ -35,7 +36,7 @@ $apps = $applications->fetchAll();
 <style>
 body{font-family:Arial;background:#e1e4e7;margin:0;padding:0;}
 .container{max-width:900px;margin:40px auto;padding:20px;}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;}
 .header h2{margin:0;}
 .btn{padding:8px 14px;border-radius:8px;background:#091d3e;color:white;text-decoration:none;}
 .btn:hover{background:#183B4E;}
@@ -48,11 +49,14 @@ th, td{padding:10px;border-bottom:1px solid #ccc;text-align:left;}
 </style>
 </head>
 <body>
-
-<div class="container">
 <div class="header">
-<h2>Welcome, <?=htmlspecialchars($student['name'])?></h2>
-<a href="../logout.php" class="btn">Logout</a>
+  <h2>Welcome, <?=htmlspecialchars($student['name'])?></h2>
+
+  <div style="display:flex; gap:10px;">
+    <a href="view_profile.php" class="btn">My Profile</a>
+    <a href="edit_profile.php" class="btn">Edit Profile</a>
+    <a href="../logout.php" class="btn">Logout</a>
+  </div>
 </div>
 
 <div class="card">
@@ -79,6 +83,18 @@ th, td{padding:10px;border-bottom:1px solid #ccc;text-align:left;}
 <?php endif; ?>
 </div>
 
+<!-- Danger Zone: Delete Account -->
+<div class="card" style="border-left:4px solid #e74c3c;">
+  <h3 style="color:#e74c3c;">Danger Zone</h3>
+  <a href="../delete_account.php"
+     onclick="return confirm('This will permanently delete your account. Continue?')"
+     style="color:#e74c3c;font-weight:bold;text-decoration:none;">
+     Delete My Account
+  </a>
+  <p style="font-size:0.9rem;color:#666;margin-top:6px;">
+    This action cannot be undone.
+  </p>
 </div>
+
 </body>
 </html>

@@ -1,8 +1,9 @@
 <?php
 session_start();
-require_once '../db.php';
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
 
-if(!isset($_SESSION['company_id'])){
+if (!isset($_SESSION['company_id'])) {
     header('Location: ../index.php');
     exit;
 }
@@ -56,35 +57,62 @@ th, td{padding:10px;border-bottom:1px solid #ccc;text-align:left;}
 <a href="../logout.php" class="btn">Logout</a>
 </div>
 
-<div class="card">
-<h3>Your Internships</h3>
-<?php if(count($interns)===0): ?>
-<p>You haven't posted any internships yet. <a href="post_internship.php">Post one now</a>.</p>
-<?php else: ?>
-<table>
-<tr>
-<th>Title</th>
-<th>Duration</th>
-<th>Total Applications</th>
-<th>Pending</th>
-<th>Accepted</th>
-<th>Actions</th>
-</tr>
-<?php foreach($interns as $i): ?>
-<tr>
-<td><?=htmlspecialchars($i['title'])?></td>
-<td><?=htmlspecialchars($i['duration'])?></td>
-<td><?=$i['total_applications']?></td>
-<td class="status-Pending"><?=$i['pending_applications']?></td>
-<td class="status-Accepted"><?=$i['accepted_applications']?></td>
-<td>
-<a href="view_application.php?id=<?=$i['id']?>" class="btn">View Applications</a>
-<a href="edit_internship.php?id=<?=$i['id']?>" class="btn">Edit</a>
+<div class="container">
+
+  <div class="header">
+    <h2>Welcome, <?=htmlspecialchars($company['name'])?></h2>
+    <a href="../logout.php" class="btn">Logout</a>
+  </div>
+
+  <div class="card">
+    <h3>Your Internships</h3>
+    <?php if(count($interns)===0): ?>
+      <p>You haven't posted any internships yet. <a href="post_internship.php">Post one now</a>.</p>
+    <?php else: ?>
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Duration</th>
+          <th>Total Applications</th>
+          <th>Pending</th>
+          <th>Accepted</th>
+          <th>Actions</th>
+        </tr>
+        <?php foreach($interns as $i): ?>
+          <tr>
+            <td><?=htmlspecialchars($i['title'])?></td>
+            <td><?=htmlspecialchars($i['duration'])?></td>
+            <td><?=$i['total_applications']?></td>
+            <td class="status-Pending"><?=$i['pending_applications']?></td>
+            <td class="status-Accepted"><?=$i['accepted_applications']?></td>
+            <td>
+    <a href="view_application.php?id=<?=$i['id']?>" class="btn">View Applications</a>
+    <a href="edit_internship.php?id=<?=$i['id']?>" class="btn">Edit</a>
+
+    <?php if($i['accepted_applications'] > 0): ?>
+        <a href="delete_internship.php?id=<?=$i['id']?>"
+           onclick="return confirm('This internship has accepted students. Are you sure you want to delete it?')"
+           class="btn" style="background:#e74c3c;margin-left:4px;">Delete</a>
+    <?php endif; ?>
 </td>
-</tr>
-<?php endforeach; ?>
-</table>
-<?php endif; ?>
+
+          </tr>
+        <?php endforeach; ?>
+      </table>
+    <?php endif; ?>
+  </div> 
+  <div class="card" style="border-left:4px solid #e74c3c;">
+    <h3 style="color:#e74c3c;">Danger Zone</h3>
+    <a href="../delete_account.php"
+       onclick="return confirm('This will permanently delete your account. Continue?')"
+       style="color:#e74c3c;font-weight:bold;text-decoration:none;">
+       Delete My Account
+    </a>
+    <p style="font-size:0.9rem;color:#666;margin-top:6px;">
+      This action cannot be undone.
+    </p>
+  </div>
+
 </div>
 
 </div>

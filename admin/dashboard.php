@@ -1,11 +1,15 @@
 <?php
 session_start();
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+
 require_once '../db.php';
 
-if(!isset($_SESSION['role']) || $_SESSION['role']!=='admin'){
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header('Location: ../index.php');
     exit;
 }
+
 
 // Get counts
 $students = $pdo->query('SELECT COUNT(*) FROM students')->fetchColumn();
