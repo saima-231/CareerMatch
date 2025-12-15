@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS internships (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
+ALTER TABLE internships ADD COLUMN is_active TINYINT(1) DEFAULT 1;
 
 -- Applications
 CREATE TABLE IF NOT EXISTS applications (

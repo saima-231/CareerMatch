@@ -2,206 +2,131 @@
 session_start();
 require_once '../db.php';
 
-if (!isset($_SESSION['company_id'])) {
+if(!isset($_SESSION['company_id'])){
     header('Location: ../index.php');
     exit;
 }
 
 $company_id = $_SESSION['company_id'];
+$success = "";
+$error = "";
 
-/* ===============================
-   HANDLE ACCEPT / REJECT ACTION
-================================ */
-if (isset($_GET['action'], $_GET['id'])) {
+// Get internship ID from query
+if(!isset($_GET['id'])){
+    die("Internship ID is required.");
+}
+
+$internship_id = $_GET['id'];
+
+// Fetch internship info
+$stmt = $pdo->prepare("SELECT * FROM internships WHERE id=? AND company_id=?");
+$stmt->execute([$internship_id, $company_id]);
+$internship = $stmt->fetch();
+
+if(!$internship){
+    die("Internship not found or you do not have permission.");
+}
+
+// Handle accept/reject actions
+if(isset($_GET['action']) && isset($_GET['app_id'])){
+    $app_id = $_GET['app_id'];
     $action = $_GET['action'];
-    $app_id = (int) $_GET['id'];
 
-    if (in_array($action, ['Accepted', 'Rejected'])) {
-        $stmt = $pdo->prepare(
-            "UPDATE applications SET status = ? WHERE id = ?"
-        );
-        $stmt->execute([$action, $app_id]);
+    if($action === 'accept'){
+        // Accept application
+        $stmt = $pdo->prepare("UPDATE applications SET status='Accepted' WHERE id=?");
+        $stmt->execute([$app_id]);
 
-        header("Location: view_application.php");
-        exit;
+        // Deactivate internship
+        $stmt = $pdo->prepare("UPDATE internships SET is_active=0 WHERE id=?");
+        $stmt->execute([$internship_id]);
+
+        $success = "Application accepted and internship closed.";
+    } elseif($action === 'reject'){
+        $stmt = $pdo->prepare("UPDATE applications SET status='Rejected' WHERE id=?");
+        $stmt->execute([$app_id]);
+        $success = "Application rejected.";
     }
 }
 
-/* ===============================
-   FETCH APPLICATIONS
-================================ */
+// Fetch all applications for this internship
 $stmt = $pdo->prepare("
-    SELECT 
-        a.id AS app_id,
-        a.status,
-        s.name AS student_name,
-        s.email,
-        s.course,
-        s.skills,
-        s.linkedin_link,
-        i.title AS internship_title
+    SELECT a.*, s.name AS student_name, s.email AS student_email
     FROM applications a
     JOIN students s ON a.student_id = s.id
-    JOIN internships i ON a.internship_id = i.id
-    WHERE i.company_id = ?
+    WHERE a.internship_id=?
     ORDER BY a.applied_at DESC
 ");
-$stmt->execute([$company_id]);
+$stmt->execute([$internship_id]);
 $applications = $stmt->fetchAll();
+
 ?>
 
 <!doctype html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
-<title>Applications</title>
-
+<title>View Applications</title>
 <style>
-body{
-    font-family:Arial;
-    background:#f4f6f8;
-    margin:0;
-    padding:0;
-}
-.container{
-    max-width:1000px;
-    margin:40px auto;
-    padding:20px;
-}
-.header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-.table{
-    width:100%;
-    border-collapse:collapse;
-    background:white;
-    box-shadow:0 6px 20px rgba(0,0,0,.08);
-}
-.table th,
-.table td{
-    padding:12px;
-    border-bottom:1px solid #eee;
-    text-align:left;
-    font-size:0.95rem;
-}
-.table th{
-    background:#f9fafb;
-}
-.btn{
-    padding:8px 14px;
-    border-radius:8px;
-    text-decoration:none;
-    color:white;
-    background:#091d3e;
-}
-.btn:hover{
-    background:#183B4E;
-}
-
-/* Action Buttons */
-.action-btns{
-    display:flex;
-    gap:12px;
-}
-.accept-btn{
-    background:#2ecc71;
-    padding:8px 14px;
-    border-radius:6px;
-    color:white;
-    text-decoration:none;
-}
-.reject-btn{
-    background:#e74c3c;
-    padding:8px 14px;
-    border-radius:6px;
-    color:white;
-    text-decoration:none;
-}
-.accept-btn:hover{background:#27ae60;}
-.reject-btn:hover{background:#c0392b;}
-
-/* Status Badge */
-.status{
-    font-weight:bold;
-}
-.status.Pending{color:#f39c12;}
-.status.Accepted{color:#27ae60;}
-.status.Rejected{color:#c0392b;}
+body{font-family:Arial;background:#e1e4e7;margin:0;padding:0;}
+.container{max-width:900px;margin:40px auto;padding:20px;}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.btn{padding:6px 12px;border-radius:6px;color:white;text-decoration:none;}
+.btn-accept{background:#27ae60;}
+.btn-accept:hover{background:#2ecc71;}
+.btn-reject{background:#e74c3c;}
+.btn-reject:hover{background:#c0392b;}
+.card{background:white;border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(0,0,0,.08);margin-bottom:20px;}
+table{width:100%;border-collapse:collapse;margin-top:10px;}
+th, td{padding:10px;border-bottom:1px solid #ccc;text-align:left;}
+.status-Pending{color:#f39c12;font-weight:bold;}
+.status-Accepted{color:#27ae60;font-weight:bold;}
+.status-Rejected{color:#e74c3c;font-weight:bold;}
+.success{background:#d4edda;color:#155724;padding:10px;border-left:4px solid #28a745;margin-bottom:12px;border-radius:6px;}
 </style>
 </head>
-
 <body>
 
 <div class="container">
+<h2>Applications for: <?=htmlspecialchars($internship['title'])?></h2>
+<a href="dashboard.php" class="btn" style="background:#091d3e;margin-bottom:10px;">← Back</a>
 
-<div class="header">
-    <h2>Internship Applications</h2>
-    <a href="dashboard.php" class="btn">Dashboard</a>
-</div>
-
-<table class="table">
-<thead>
-<tr>
-    <th>Student</th>
-    <th>Email</th>
-    <th>Course</th>
-    <th>Skills</th>
-    <th>LinkedIn</th>
-    <th>Internship</th>
-    <th>Status</th>
-    <th>Action</th>
-</tr>
-</thead>
-
-<tbody>
-<?php if (count($applications) === 0): ?>
-<tr>
-    <td colspan="8">No applications found.</td>
-</tr>
+<?php if($success): ?>
+<div class="success"><?=htmlspecialchars($success)?></div>
 <?php endif; ?>
 
-<?php foreach ($applications as $a): ?>
+<?php if(count($applications)===0): ?>
+<p>No applications yet for this internship.</p>
+<?php else: ?>
+<table>
 <tr>
-    <td><?= htmlspecialchars($a['student_name']) ?></td>
-    <td><?= htmlspecialchars($a['email']) ?></td>
-    <td><?= htmlspecialchars($a['course']) ?></td>
-    <td><?= htmlspecialchars($a['skills']) ?></td>
-    <td>
-        <?php if(!empty($a['linkedin_link'])): ?>
-            <a href="<?= htmlspecialchars($a['linkedin_link']) ?>" target="_blank">
-                View
-            </a>
-        <?php else: ?>
-            —
-        <?php endif; ?>
-    </td>
-    <td><?= htmlspecialchars($a['internship_title']) ?></td>
-    <td class="status <?= $a['status'] ?>">
-        <?= $a['status'] ?>
-    </td>
-    <td>
-        <?php if ($a['status'] === 'Pending'): ?>
-        <div class="action-btns">
-            <a href="view_application.php?action=Accepted&id=<?= $a['app_id'] ?>" class="accept-btn">
-                Accept
-            </a>
-            <a href="view_application.php?action=Rejected&id=<?= $a['app_id'] ?>" class="reject-btn">
-                Reject
-            </a>
-        </div>
-        <?php else: ?>
-            —
-        <?php endif; ?>
-    </td>
+<th>Student Name</th>
+<th>Email</th>
+<th>Status</th>
+<th>Applied At</th>
+<th>Action</th>
+</tr>
+<?php foreach($applications as $a): ?>
+<tr>
+<td><?=htmlspecialchars($a['student_name'])?></td>
+<td><?=htmlspecialchars($a['student_email'])?></td>
+<td class="status-<?=$a['status']?>"><?=htmlspecialchars($a['status'])?></td>
+<td><?=htmlspecialchars($a['applied_at'])?></td>
+<td>
+    <?php if($a['status'] === 'Pending'): ?>
+        <a href="?id=<?=$internship_id?>&app_id=<?=$a['id']?>&action=accept" class="btn btn-accept"
+           onclick="return confirm('Accept this application? Internship will close for new applications.')">Accept</a>
+        <a href="?id=<?=$internship_id?>&app_id=<?=$a['id']?>&action=reject" class="btn btn-reject"
+           onclick="return confirm('Reject this application?')">Reject</a>
+    <?php else: ?>
+        -
+    <?php endif; ?>
+</td>
 </tr>
 <?php endforeach; ?>
-</tbody>
 </table>
+<?php endif; ?>
 
 </div>
-
 </body>
 </html>

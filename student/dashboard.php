@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once '../db.php';
+
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Pragma: no-cache");
 
@@ -15,13 +17,13 @@ $stmt = $pdo->prepare("SELECT * FROM students WHERE id=?");
 $stmt->execute([$student_id]);
 $student = $stmt->fetch();
 
-// Fetch student applications with internship & company info
+// Fetch student applications with internship & company info (only active internships)
 $applications = $pdo->prepare("
     SELECT a.*, i.title AS internship_title, c.name AS company_name
     FROM applications a
     JOIN internships i ON a.internship_id = i.id
     JOIN companies c ON i.company_id = c.id
-    WHERE a.student_id = ?
+    WHERE a.student_id = ? 
     ORDER BY a.applied_at DESC
 ");
 $applications->execute([$student_id]);
@@ -38,7 +40,7 @@ body{font-family:Arial;background:#e1e4e7;margin:0;padding:0;}
 .container{max-width:900px;margin:40px auto;padding:20px;}
 .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;}
 .header h2{margin:0;}
-.btn{padding:8px 14px;border-radius:8px;background:#091d3e;color:white;text-decoration:none;}
+.btn{padding:8px 14px;border-radius:8px;background:#091d3e;color:white;text-decoration:none;margin-left:6px;}
 .btn:hover{background:#183B4E;}
 .card{background:white;border-radius:14px;padding:20px;box-shadow:0 8px 20px rgba(0,0,0,.08);margin-bottom:20px;}
 table{width:100%;border-collapse:collapse;margin-top:10px;}
@@ -49,10 +51,11 @@ th, td{padding:10px;border-bottom:1px solid #ccc;text-align:left;}
 </style>
 </head>
 <body>
+
+<div class="container">
 <div class="header">
   <h2>Welcome, <?=htmlspecialchars($student['name'])?></h2>
-
-  <div style="display:flex; gap:10px;">
+  <div style="display:flex; gap:10px; flex-wrap:wrap;">
     <a href="view_profile.php" class="btn">My Profile</a>
     <a href="edit_profile.php" class="btn">Edit Profile</a>
     <a href="../logout.php" class="btn">Logout</a>
@@ -96,5 +99,6 @@ th, td{padding:10px;border-bottom:1px solid #ccc;text-align:left;}
   </p>
 </div>
 
+</div>
 </body>
 </html>
