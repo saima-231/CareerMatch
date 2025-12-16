@@ -58,6 +58,7 @@ th, td{padding:10px;border-bottom:1px solid #ccc;text-align:left;}
   <div style="display:flex; gap:10px; flex-wrap:wrap;">
     <a href="view_profile.php" class="btn">My Profile</a>
     <a href="edit_profile.php" class="btn">Edit Profile</a>
+    <a href="internships.php" class="btn">Browse Internships</a>
     <a href="../logout.php" class="btn">Logout</a>
   </div>
 </div>

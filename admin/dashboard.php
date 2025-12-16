@@ -10,21 +10,21 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     exit;
 }
 
-
 // Get counts
 $students = $pdo->query('SELECT COUNT(*) FROM students')->fetchColumn();
 $companies = $pdo->query('SELECT COUNT(*) FROM companies')->fetchColumn();
 $internships = $pdo->query('SELECT COUNT(*) FROM internships')->fetchColumn();
 $apps = $pdo->query('SELECT COUNT(*) FROM applications')->fetchColumn();
 
-// Get recent applications
+// Get recent applications with company name, ordered by company
 $recent_apps = $pdo->query('
-    SELECT a.*, s.name as student_name, i.title as internship_title
+    SELECT a.*, s.name AS student_name, i.title AS internship_title, c.name AS company_name
     FROM applications a
     JOIN students s ON a.student_id = s.id
     JOIN internships i ON a.internship_id = i.id
-    ORDER BY a.applied_at DESC
-    LIMIT 10
+    JOIN companies c ON i.company_id = c.id
+    ORDER BY c.name ASC, a.applied_at DESC
+    LIMIT 50
 ')->fetchAll();
 ?>
 
@@ -55,6 +55,7 @@ header h1{margin:0;font-size:2rem;}
 .badge-rejected{background:#f8d7da;color:#721c24;}
 .btn-logout{padding:8px 14px;border:none;border-radius:6px;background:var(--primary);color:white;text-decoration:none;}
 .btn-logout:hover{background:var(--secondary);}
+.company-header{background:#f0f0f0;font-weight:bold;padding:6px 10px;}
 @media(max-width:768px){.stats-grid{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -75,12 +76,29 @@ header h1{margin:0;font-size:2rem;}
 <h3>Recent Applications</h3>
 <div class="card">
 <table class="table">
-<thead><tr><th>Student</th><th>Internship</th><th>Status</th><th>Applied At</th></tr></thead>
+<thead>
+<tr>
+    <th>Student</th>
+    <th>Internship</th>
+    <th>Company</th>
+    <th>Status</th>
+    <th>Applied At</th>
+</tr>
+</thead>
 <tbody>
-<?php foreach($recent_apps as $r): ?>
+<?php
+$current_company = '';
+foreach($recent_apps as $r):
+    // Optional: add a company header row
+    if ($current_company !== $r['company_name']):
+        $current_company = $r['company_name'];
+        echo "<tr class='company-header'><td colspan='5'>Company: ".htmlspecialchars($current_company)."</td></tr>";
+    endif;
+?>
 <tr>
 <td><?=htmlspecialchars($r['student_name'])?></td>
 <td><?=htmlspecialchars($r['internship_title'])?></td>
+<td><?=htmlspecialchars($r['company_name'])?></td>
 <td>
 <?php if($r['status']=='Pending'): ?><span class="badge badge-pending">Pending</span>
 <?php elseif($r['status']=='Accepted'): ?><span class="badge badge-accepted">Accepted</span>

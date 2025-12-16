@@ -33,7 +33,7 @@ $stmt = $pdo->prepare("SELECT * FROM companies WHERE id=?");
 $stmt->execute([$company_id]);
 $company = $stmt->fetch();
 
-// Fetch internships posted by company
+// Fetch internships posted by company with total, pending, and accepted counts
 $internships = $pdo->prepare("
     SELECT i.*, 
            (SELECT COUNT(*) FROM applications a WHERE a.internship_id=i.id) AS total_applications,
