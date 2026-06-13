@@ -4,115 +4,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CareerMatch - Internship Management System</title>
+    <title>CareerMatch</title>
 
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primaryDark: '#161a30',
+                        primary: '#3B7597',
+                        secondary: '#8CC7C4',
+                        cream: '#EAE0CF'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Animated background */
+        .animated-bg {
+            background: linear-gradient(-45deg, #111844, #4B5694, #7288AE, #111844);
+            background-size: 400% 400%;
+            animation: moveBg 12s ease infinite;
+        }
+
+        @keyframes moveBg {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Glow effect */
+        .glow:hover {
+            box-shadow: 0 0 20px rgba(114, 136, 174, 0.8);
+        }
+    </style>
+
 </head>
 
-<body>
+<body class="bg-cream text-primaryDark">
 
-    <!-- Header -->
-    <header>
-        <nav class="navbar">
-            <div class="logo">CareerMatch</div>
+    <!-- NAVBAR -->
+    <header class="bg-primaryDark text-white shadow-lg">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
 
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Internships</a></li>
-                <li><a href="#">Companies</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
-            </ul>
-        </nav>
+            <!-- LOGO + TAGLINE -->
+            <div>
+                <h1 class="text-2xl font-bold leading-tight">
+                    CareerMatch
+                </h1>
+                <p class="text-xs text-secondary tracking-widest mt-1">
+                    Connecting talent with opportunity
+                </p>
+            </div>
+
+            <!-- NAV LINKS -->
+            <nav class="space-x-6 text-sm">
+                <a href="#" class="hover:text-secondary">Home</a>
+                <a href="internships.html" class="hover:text-secondary">Internships</a>
+                <a href="#" class="hover:text-secondary">Companies</a>
+                <a href="login.html" class="hover:text-secondary">Login</a>
+
+                <a href="register.html" class="bg-secondary px-4 py-2 rounded-lg glow transition">
+                    Register
+                </a>
+            </nav>
+
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Find Your Dream Internship Today</h1>
-            <p>
-                Connect with top companies and kickstart your career with
-                CareerMatch.
+    <!-- HERO SECTION -->
+    <section class="animated-bg text-white">
+
+        <div class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-10 items-center">
+
+            <!-- TEXT -->
+            <div>
+
+                <h2 class="text-4xl md:text-5xl font-bold leading-tight">
+                    Find internships that shape your future
+                </h2>
+
+                <p class="mt-4 text-gray-200">
+                    Apply, track, and manage internships all in one place.
+                </p>
+
+                <!-- SEARCH BAR -->
+                <div class="mt-6 flex bg-white rounded-xl overflow-hidden shadow-lg">
+
+                    <input type="text" placeholder="Search internships (e.g. Web Developer)"
+                        class="w-full px-4 py-3 text-black outline-none">
+
+                    <button class="bg-secondary px-6 hover:bg-primary transition">
+                        Search
+                    </button>
+
+                </div>
+
+                <!-- BUTTONS -->
+                <div class="mt-6 flex gap-4">
+
+                    <a href="internships.html" class="bg-secondary px-6 py-3 rounded-lg font-semibold glow transition">
+                        Explore Internships
+                    </a>
+
+                    <a href="register.html"
+                        class="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-primaryDark transition">
+                        Get Started
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- IMAGE -->
+            <div class="hidden md:block">
+                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" class="rounded-2xl shadow-2xl"
+                    alt="hero image">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="py-20">
+
+        <div class="max-w-7xl mx-auto px-6 text-center">
+
+            <h2 class="text-3xl font-bold mb-10">
+                Internship Categories
+            </h2>
+
+            <div class="grid md:grid-cols-4 gap-6">
+
+                <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+                    💻
+                    <h3 class="font-bold mt-2">Web Development</h3>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+                    🎨
+                    <h3 class="font-bold mt-2">UI/UX Design</h3>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+                    📊
+                    <h3 class="font-bold mt-2">Data Science</h3>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+                    ☁️
+                    <h3 class="font-bold mt-2">Cloud & DevOps</h3>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="bg-cream py-20">
+
+        <div class="max-w-7xl mx-auto px-6 text-center">
+
+            <h2 class="text-3xl font-bold mb-10">
+                Why CareerMatch?
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <div class="bg-white p-8 rounded-xl shadow hover:shadow-xl transition">
+                    🔍 Smart Internship Search
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow hover:shadow-xl transition">
+                    📈 Application Tracking
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow hover:shadow-xl transition">
+                    🏢 Top Companies Access
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-primaryDark text-white py-10">
+
+        <div class="max-w-7xl mx-auto text-center">
+
+            <h2 class="text-xl font-bold">CareerMatch</h2>
+
+            <p class="text-secondary text-sm mt-1">
+                Connecting talent with opportunity
             </p>
 
-            <div class="hero-buttons">
-                <a href="#" class="btn">Browse Internships</a>
-                <a href="#" class="btn btn-secondary">Register Now</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features -->
-    <section class="features">
-
-        <h2>Why Choose CareerMatch?</h2>
-
-        <div class="feature-container">
-
-            <div class="feature-card">
-                <i class="fas fa-search"></i>
-                <h3>Search Internships</h3>
-                <p>Explore hundreds of internship opportunities.</p>
-            </div>
-
-            <div class="feature-card">
-                <i class="fas fa-file-alt"></i>
-                <h3>Easy Applications</h3>
-                <p>Apply quickly with a simple application process.</p>
-            </div>
-
-            <div class="feature-card">
-                <i class="fas fa-chart-line"></i>
-                <h3>Track Status</h3>
-                <p>Monitor your application progress in real time.</p>
-            </div>
-
-            <div class="feature-card">
-                <i class="fas fa-building"></i>
-                <h3>Top Companies</h3>
-                <p>Connect with leading organizations and recruiters.</p>
-            </div>
+            <p class="text-gray-400 mt-6 text-sm">
+                © 2026 CareerMatch. All rights reserved.
+            </p>
 
         </div>
-    </section>
-
-    <!-- Latest Internships -->
-    <section class="internships">
-
-        <h2>Latest Internships</h2>
-
-        <div class="internship-container">
-
-            <div class="internship-card">
-                <h3>Frontend Developer Intern</h3>
-                <p><strong>Company:</strong> ABC Technologies</p>
-                <p><strong>Duration:</strong> 3 Months</p>
-                <button>Apply Now</button>
-            </div>
-
-            <div class="internship-card">
-                <h3>UI/UX Design Intern</h3>
-                <p><strong>Company:</strong> Creative Studio</p>
-                <p><strong>Duration:</strong> 6 Months</p>
-                <button>Apply Now</button>
-            </div>
-
-            <div class="internship-card">
-                <h3>Backend Developer Intern</h3>
-                <p><strong>Company:</strong> Tech Solutions</p>
-                <p><strong>Duration:</strong> 4 Months</p>
-                <button>Apply Now</button>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 CareerMatch. All Rights Reserved.</p>
     </footer>
 
 </body>
