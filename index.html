@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -13,10 +13,10 @@
             theme: {
                 extend: {
                     colors: {
-                        primaryDark: '#161a30',
-                        primary: '#3B7597',
-                        secondary: '#8CC7C4',
-                        cream: '#EAE0CF'
+                        primaryDark: '#091D3E',
+                        primary: '#06B6D4',
+                        secondary: '#67E8F9',
+                        cream: '#F8FAFC'
                     }
                 }
             }
@@ -24,14 +24,17 @@
     </script>
 
     <style>
-        /* Animated background */
-        .animated-bg {
-            background: linear-gradient(-45deg, #111844, #4B5694, #7288AE, #111844);
+        .hero-bg {
+            background: linear-gradient(-45deg,
+                    #091D3E,
+                    #0F2F63,
+                    #123E7A,
+                    #091D3E);
             background-size: 400% 400%;
-            animation: moveBg 12s ease infinite;
+            animation: gradientFlow 12s ease infinite;
         }
 
-        @keyframes moveBg {
+        @keyframes gradientFlow {
             0% {
                 background-position: 0% 50%;
             }
@@ -44,177 +47,257 @@
                 background-position: 0% 50%;
             }
         }
-
-        /* Glow effect */
-        .glow:hover {
-            box-shadow: 0 0 20px rgba(114, 136, 174, 0.8);
-        }
     </style>
-
 </head>
 
-<body class="bg-cream text-primaryDark">
+<body class="bg-cream text-primaryDark antialiased">
 
     <!-- NAVBAR -->
-    <header class="bg-primaryDark text-white shadow-lg">
-        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-primaryDark/40 border-b border-white/10">
 
-            <!-- LOGO + TAGLINE -->
-            <div>
-                <h1 class="text-2xl font-bold leading-tight">
-                    CareerMatch
-                </h1>
-                <p class="text-xs text-secondary tracking-widest mt-1">
-                    Connecting talent with opportunity
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="text-center">
+                <h1 class="text-white text-4xl font-bold tracking-wide">CareerMatch</h1>
+                <div class="w-20 h-[2px] bg-secondary mx-auto mt-2"></div>
+                <p class="text-secondary text-[10px] tracking-[0.3em] uppercase mt-2">Connecting talent with opportunity
                 </p>
             </div>
 
-            <!-- NAV LINKS -->
-            <nav class="space-x-6 text-sm">
-                <a href="#" class="hover:text-secondary">Home</a>
-                <a href="internships.html" class="hover:text-secondary">Internships</a>
-                <a href="#" class="hover:text-secondary">Companies</a>
-                <a href="login.html" class="hover:text-secondary">Login</a>
+            <nav class="hidden md:flex items-center gap-8 text-white text-sm">
+                <a href="#" class="relative group hover:text-secondary transition">
+                    Home<span
+                        class="absolute left-0 -bottom-1 w-0 h-0.5 bg-secondary group-hover:w-full transition-all"></span>
+                </a>
+                <a href="#" class="hover:text-secondary transition">Internships</a>
+                <a href="#" class="hover:text-secondary transition">Companies</a>
+                <a href="#" class="hover:text-secondary transition">Login</a>
 
-                <a href="register.html" class="bg-secondary px-4 py-2 rounded-lg glow transition">
+                <a href="#"
+                    class="bg-secondary text-primaryDark px-5 py-2 rounded-xl font-semibold hover:brightness-110 active:scale-95 transition">
                     Register
                 </a>
+
             </nav>
 
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="animated-bg text-white">
+    <!-- HERO -->
+    <section class="hero-bg min-h-screen flex items-center relative pt-24">
 
-        <div class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-10 items-center">
+        <div class="absolute inset-0 bg-black/20"></div>
 
-            <!-- TEXT -->
-            <div>
+        <div class="relative max-w-7xl mx-auto px-6 w-full">
 
-                <h2 class="text-4xl md:text-5xl font-bold leading-tight">
-                    Find internships that shape your future
-                </h2>
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
 
-                <p class="mt-4 text-gray-200">
-                    Apply, track, and manage internships all in one place.
-                </p>
+                <div>
 
-                <!-- SEARCH BAR -->
-                <div class="mt-6 flex bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div
+                        class="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-secondary text-sm">
+                        Internship Management Platform
+                    </div>
 
-                    <input type="text" placeholder="Search internships (e.g. Web Developer)"
-                        class="w-full px-4 py-3 text-black outline-none">
+                    <h2 class="text-white text-5xl lg:text-6xl font-bold mt-6 leading-tight tracking-tight">
+                        Launch Your <span class="text-secondary">Career</span> Journey
+                    </h2>
 
-                    <button class="bg-secondary px-6 hover:bg-primary transition">
-                        Search
-                    </button>
+                    <p class="text-white/90 mt-6 text-lg max-w-xl">
+                        Discover internships, connect with companies, and track every application from one modern
+                        platform.
+                    </p>
+
+                    <!-- SEARCH -->
+                    <div class="mt-8 bg-white rounded-2xl p-2 flex shadow-2xl border border-white/30">
+
+                        <input type="text" placeholder="Search internships..."
+                            class="flex-1 px-4 py-3 outline-none rounded-xl focus:ring-2 focus:ring-secondary">
+
+                        <button
+                            class="bg-primary text-white px-6 rounded-xl hover:bg-primaryDark active:scale-95 transition">
+                            Search
+                        </button>
+
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="mt-8 flex gap-4 flex-wrap">
+
+                        <button
+                            class="bg-secondary text-primaryDark font-semibold px-6 py-3 rounded-xl hover:brightness-110 active:scale-95 transition">
+                            Explore Internships
+                        </button>
+
+                        <button
+                            class="border border-white text-white px-6 py-3 rounded-xl hover:bg-white hover:text-primaryDark transition">
+                            Learn More
+                        </button>
+
+                    </div>
 
                 </div>
 
-                <!-- BUTTONS -->
-                <div class="mt-6 flex gap-4">
+                <!-- HERO STATS -->
+                <div class="hidden lg:block">
 
-                    <a href="internships.html" class="bg-secondary px-6 py-3 rounded-lg font-semibold glow transition">
-                        Explore Internships
-                    </a>
+                    <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-3xl p-8">
 
-                    <a href="register.html"
-                        class="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-primaryDark transition">
-                        Get Started
-                    </a>
+                        <div class="grid grid-cols-2 gap-5">
+
+                            <div class="bg-white rounded-2xl p-6 hover:-translate-y-1 hover:shadow-2xl transition">
+                                <h3 class="text-3xl font-bold text-primary">500+</h3>
+                                <p class="mt-2 text-gray-600">Active Internships</p>
+                            </div>
+
+                            <div class="bg-white rounded-2xl p-6 hover:-translate-y-1 hover:shadow-2xl transition">
+                                <h3 class="text-3xl font-bold text-primary">200+</h3>
+                                <p class="mt-2 text-gray-600">Companies</p>
+                            </div>
+
+                            <div class="bg-white rounded-2xl p-6 hover:-translate-y-1 hover:shadow-2xl transition">
+                                <h3 class="text-3xl font-bold text-primary">5K+</h3>
+                                <p class="mt-2 text-gray-600">Students</p>
+                            </div>
+
+                            <div class="bg-white rounded-2xl p-6 hover:-translate-y-1 hover:shadow-2xl transition">
+                                <h3 class="text-3xl font-bold text-primary">1K+</h3>
+                                <p class="mt-2 text-gray-600">Placements</p>
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
-            </div>
-
-            <!-- IMAGE -->
-            <div class="hidden md:block">
-                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" class="rounded-2xl shadow-2xl"
-                    alt="hero image">
             </div>
 
         </div>
     </section>
 
     <!-- CATEGORIES -->
-    <section class="py-20">
+    <section class="py-28">
 
-        <div class="max-w-7xl mx-auto px-6 text-center">
+        <div class="max-w-7xl mx-auto px-6">
 
-            <h2 class="text-3xl font-bold mb-10">
-                Internship Categories
-            </h2>
+            <div class="text-center">
+                <h2 class="text-4xl font-bold tracking-tight">Explore Categories</h2>
+                <p class="mt-4 text-gray-500">Find opportunities that match your interests.</p>
+            </div>
 
-            <div class="grid md:grid-cols-4 gap-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
 
-                <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
-                    💻
-                    <h3 class="font-bold mt-2">Web Development</h3>
+                <!-- CARD 1 -->
+                <div class="group p-8 rounded-3xl border border-cyan-400/50
+                        shadow-[0_0_20px_rgba(34,211,238,0.15)]
+                        hover:shadow-[0_0_30px_rgba(34,211,238,0.3)]
+                        hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 bg-cyan-200/40 rounded-2xl flex items-center justify-center text-2xl
+                            group-hover:scale-110 transition">
+                        💻
+                    </div>
+                    <h3 class="mt-5 font-semibold text-lg">Web Development</h3>
                 </div>
 
-                <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
-                    🎨
-                    <h3 class="font-bold mt-2">UI/UX Design</h3>
+                <!-- CARD 2 -->
+                <div class="group p-8 rounded-3xl border border-emerald-400/50
+                        shadow-[0_0_20px_rgba(52,211,153,0.15)]
+                        hover:shadow-[0_0_30px_rgba(52,211,153,0.3)]
+                        hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 bg-emerald-200/40 rounded-2xl flex items-center justify-center text-2xl
+                            group-hover:scale-110 transition">
+                        🎨
+                    </div>
+                    <h3 class="mt-5 font-semibold text-lg">UI/UX Design</h3>
                 </div>
 
-                <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
-                    📊
-                    <h3 class="font-bold mt-2">Data Science</h3>
+                <!-- CARD 3 -->
+                <div class="group p-8 rounded-3xl border border-violet-400/50
+                        shadow-[0_0_20px_rgba(167,139,250,0.15)]
+                        hover:shadow-[0_0_30px_rgba(167,139,250,0.3)]
+                        hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 bg-violet-200/40 rounded-2xl flex items-center justify-center text-2xl
+                            group-hover:scale-110 transition">
+                        📊
+                    </div>
+                    <h3 class="mt-5 font-semibold text-lg">Data Science</h3>
                 </div>
 
-                <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
-                    ☁️
-                    <h3 class="font-bold mt-2">Cloud & DevOps</h3>
+                <!-- CARD 4 -->
+                <div class="group p-8 rounded-3xl border border-cyan-400/50
+                        shadow-[0_0_20px_rgba(34,211,238,0.15)]
+                        hover:shadow-[0_0_30px_rgba(34,211,238,0.3)]
+                        hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 bg-cyan-200/40 rounded-2xl flex items-center justify-center text-2xl
+                            group-hover:scale-110 transition">
+                        ☁️
+                    </div>
+                    <h3 class="mt-5 font-semibold text-lg">Cloud & DevOps</h3>
                 </div>
 
             </div>
+
         </div>
     </section>
 
     <!-- FEATURES -->
-    <section class="bg-cream py-20">
+    <section class="bg-white py-28 border-t border-gray-100">
 
-        <div class="max-w-7xl mx-auto px-6 text-center">
+        <div class="max-w-7xl mx-auto px-6">
 
-            <h2 class="text-3xl font-bold mb-10">
-                Why CareerMatch?
-            </h2>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold">Why CareerMatch?</h2>
+                <p class="text-gray-500 mt-4">Everything you need to find and manage internships.</p>
+            </div>
 
             <div class="grid md:grid-cols-3 gap-8">
 
-                <div class="bg-white p-8 rounded-xl shadow hover:shadow-xl transition">
-                    🔍 Smart Internship Search
+                <div class="p-8 rounded-3xl border border-cyan-400/50
+                        shadow-[0_0_20px_rgba(34,211,238,0.15)]
+                        hover:shadow-[0_0_30px_rgba(34,211,238,0.3)]
+                        transition-all duration-300">
+                    <h3 class="text-xl font-bold">Smart Search</h3>
+                    <p class="mt-4 text-gray-600">Quickly discover internships that fit your skills.</p>
                 </div>
 
-                <div class="bg-white p-8 rounded-xl shadow hover:shadow-xl transition">
-                    📈 Application Tracking
+                <div class="p-8 rounded-3xl border border-emerald-400/50
+                        shadow-[0_0_20px_rgba(52,211,153,0.15)]
+                        hover:shadow-[0_0_30px_rgba(52,211,153,0.3)]
+                        transition-all duration-300">
+                    <h3 class="text-xl font-bold">Easy Applications</h3>
+                    <p class="mt-4 text-gray-600">Apply directly and manage everything from one dashboard.</p>
                 </div>
 
-                <div class="bg-white p-8 rounded-xl shadow hover:shadow-xl transition">
-                    🏢 Top Companies Access
+                <div class="p-8 rounded-3xl border border-violet-400/50
+                        shadow-[0_0_20px_rgba(167,139,250,0.15)]
+                        hover:shadow-[0_0_30px_rgba(167,139,250,0.3)]
+                        transition-all duration-300">
+                    <h3 class="text-xl font-bold">Track Progress</h3>
+                    <p class="mt-4 text-gray-600">Monitor application status in real time.</p>
                 </div>
 
             </div>
+
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-primaryDark text-white py-10">
+    <footer class="bg-primaryDark text-white py-16">
 
-        <div class="max-w-7xl mx-auto text-center">
+        <div class="max-w-7xl mx-auto px-6 text-center">
 
-            <h2 class="text-xl font-bold">CareerMatch</h2>
+            <h2 class="text-2xl font-bold">CareerMatch</h2>
 
-            <p class="text-secondary text-sm mt-1">
-                Connecting talent with opportunity
-            </p>
+            <div class="w-16 h-[2px] bg-secondary mx-auto mt-2"></div>
 
-            <p class="text-gray-400 mt-6 text-sm">
-                © 2026 CareerMatch. All rights reserved.
+            <p class="text-secondary mt-2">Connecting talent with opportunity</p>
+
+            <p class="mt-6 text-gray-400 text-sm">
+                © 2026 CareerMatch. All Rights Reserved.
             </p>
 
         </div>
+
     </footer>
 
 </body>
