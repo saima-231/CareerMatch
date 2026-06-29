@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CareerMatch - Login</title>
+    <title>CareerMatch - Register</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -30,7 +30,7 @@
     <div class="absolute w-72 h-72 bg-primary/20 blur-3xl rounded-full top-10 left-10"></div>
     <div class="absolute w-72 h-72 bg-secondary/10 blur-3xl rounded-full bottom-10 right-10"></div>
 
-    <!-- LOGIN CARD -->
+    <!-- REGISTER CARD -->
     <div class="w-full max-w-md bg-slate-900/70 backdrop-blur-lg border border-cyan-900 rounded-3xl p-10">
 
         <!-- HEADER -->
@@ -43,11 +43,11 @@
             <div class="w-16 h-[2px] bg-primary mx-auto mt-3"></div>
 
             <h2 class="text-xl font-semibold mt-5">
-                👋 Welcome <span class="text-primary">Back</span>
+                Create <span class="text-primary">Account</span>
             </h2>
 
             <p class="text-slate-400 mt-2 text-sm">
-                Login to continue your journey
+                🎓 Join CareerMatch today
             </p>
 
         </div>
@@ -62,8 +62,14 @@
                     class="w-full mt-2 px-4 py-3 rounded-xl bg-slate-800 border border-cyan-900 focus:border-primary outline-none">
                     <option>Student</option>
                     <option>Company</option>
-                    <option>Admin</option>
                 </select>
+            </div>
+
+            <!-- Name -->
+            <div>
+                <label class="text-sm text-slate-300">Full Name</label>
+                <input type="text" placeholder="Enter your name"
+                    class="w-full mt-2 px-4 py-3 rounded-xl bg-slate-800 border border-cyan-900 focus:border-primary outline-none text-white" />
             </div>
 
             <!-- Email -->
@@ -76,26 +82,27 @@
             <!-- Password -->
             <div>
                 <label class="text-sm text-slate-300">Password</label>
-                <input type="password" placeholder="Enter password"
+                <input type="password" placeholder="Create password"
                     class="w-full mt-2 px-4 py-3 rounded-xl bg-slate-800 border border-cyan-900 focus:border-primary outline-none text-white" />
             </div>
 
-            <!-- Options -->
-            <div class="flex justify-between items-center text-sm text-slate-400">
-                <label class="flex items-center gap-2">
-                    <input type="checkbox" class="accent-primary">
-                    Remember Me
-                </label>
-
-                <a href="#" class="text-primary hover:underline">
-                    Forgot Password?
-                </a>
+            <!-- Confirm Password -->
+            <div>
+                <label class="text-sm text-slate-300">Confirm Password</label>
+                <input type="password" placeholder="Confirm password"
+                    class="w-full mt-2 px-4 py-3 rounded-xl bg-slate-800 border border-cyan-900 focus:border-primary outline-none text-white" />
             </div>
+
+            <!-- Terms -->
+            <label class="flex items-center gap-2 text-sm text-slate-400">
+                <input type="checkbox" class="accent-primary">
+                I agree to Terms & Conditions
+            </label>
 
             <!-- Button -->
             <button
                 class="w-full bg-primary text-primaryDark font-semibold py-3 rounded-xl hover:bg-secondary transition">
-                Login
+                Create Account
             </button>
 
         </form>
@@ -112,11 +119,11 @@
             Continue with Google
         </button>
 
-        <!-- Register -->
+        <!-- Login -->
         <p class="text-center text-slate-400 text-sm mt-6">
-            Don’t have an account?
-            <a href="register.html" class="text-primary hover:underline font-medium">
-                Register
+            Already have an account?
+            <a href="login.html" class="text-primary hover:underline font-medium">
+                Login
             </a>
         </p>
 
