@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CareerMatch - Company Dashboard</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primaryDark: "#091D3E",
+                        primary: "#06B6D4",
+                        secondary: "#67E8F9",
+                        cream: "#F8FAFC",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="bg-primaryDark text-cream min-h-screen">
+    <!-- Background Glow -->
+
+    <div class="fixed w-96 h-96 bg-primary/20 blur-3xl rounded-full top-0 left-0"></div>
+
+    <div class="fixed w-96 h-96 bg-secondary/10 blur-3xl rounded-full bottom-0 right-0"></div>
+
+    <div class="relative flex min-h-screen">
+        <!-- SIDEBAR -->
+
+        <aside class="hidden md:flex w-72 bg-slate-900/70 backdrop-blur-lg border-r border-cyan-900 flex-col p-6">
+            <!-- Logo -->
+
+            <div class="text-center mb-10">
+                <h1 class="text-3xl font-bold">
+                    Career<span class="text-primary"> Match </span>
+                </h1>
+
+                <div class="w-16 h-[2px] bg-primary mx-auto mt-3"></div>
+            </div>
+
+            <!-- Navigation -->
+
+            <nav class="space-y-4">
+                <a href="#" class="block px-4 py-3 rounded-xl bg-primary text-primaryDark font-semibold">
+                    🏠 Dashboard
+                </a>
+
+                <a href="#" class="block px-4 py-3 rounded-xl hover:bg-slate-800">
+                    ➕ Post Internship
+                </a>
+
+                <a href="#" class="block px-4 py-3 rounded-xl hover:bg-slate-800">
+                    📋 My Internships
+                </a>
+
+                <a href="#" class="block px-4 py-3 rounded-xl hover:bg-slate-800">
+                    👥 Applicants
+                </a>
+
+                <a href="#" class="block px-4 py-3 rounded-xl hover:bg-slate-800">
+                    🏢 Company Profile
+                </a>
+            </nav>
+
+            <!-- Logout -->
+
+            <div class="mt-auto">
+                <a href="login.html"
+                    class="block text-center bg-red-500/20 border border-red-500/40 py-3 rounded-xl hover:bg-red-500/40">
+                    Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+
+        <main class="flex-1 p-6 md:p-10">
+            <!-- HEADER -->
+
+            <div class="flex justify-between items-center mb-10">
+                <div>
+                    <h2 class="text-3xl font-bold">
+                        Welcome,
+
+                        <span class="text-primary"> ABC Technologies </span>
+
+                        🏢
+                    </h2>
+
+                    <p class="text-slate-400 mt-2">
+                        Manage internships and find talented students
+                    </p>
+                </div>
+
+                <div class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-3xl">
+                    🏢
+                </div>
+            </div>
+
+            <!-- STAT CARDS -->
+
+            <div class="grid md:grid-cols-4 gap-5 mb-10">
+                <div class="bg-slate-900/70 border border-cyan-900 rounded-3xl p-6">
+                    <h3 class="text-3xl font-bold text-primary">25</h3>
+
+                    <p class="text-slate-400">Active Internships</p>
+                </div>
+
+                <div class="bg-slate-900/70 border border-cyan-900 rounded-3xl p-6">
+                    <h3 class="text-3xl font-bold text-primary">350</h3>
+
+                    <p class="text-slate-400">Applications</p>
+                </div>
+
+                <div class="bg-slate-900/70 border border-cyan-900 rounded-3xl p-6">
+                    <h3 class="text-3xl font-bold text-primary">45</h3>
+
+                    <p class="text-slate-400">Shortlisted</p>
+                </div>
+
+                <div class="bg-slate-900/70 border border-cyan-900 rounded-3xl p-6">
+                    <h3 class="text-3xl font-bold text-primary">12</h3>
+
+                    <p class="text-slate-400">Selected</p>
+                </div>
+            </div>
+
+            <!-- POST INTERNSHIP -->
+
+            <section class="bg-slate-900/70 border border-cyan-900 rounded-3xl p-6 mb-8">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-bold">Post New Internship</h3>
+
+                    <button class="bg-primary text-primaryDark px-5 py-2 rounded-xl font-semibold">
+                        + Create
+                    </button>
+                </div>
+            </section>
+
+            <!-- INTERNSHIPS -->
+
+            <section>
+                <h3 class="text-2xl font-bold mb-5">My Internships</h3>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-slate-900/70 border border-cyan-900 rounded-3xl p-6">
+                        <h4 class="text-xl font-bold">Frontend Developer Intern</h4>
+
+                        <p class="text-slate-400 mt-2">Applicants: 120</p>
+
+                        <div class="flex gap-3 mt-5">
+                            <button class="bg-primary text-primaryDark px-5 py-2 rounded-xl">
+                                View
+                            </button>
+
+                            <button class="bg-slate-700 px-5 py-2 rounded-xl">Edit</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/70 border border-cyan-900 rounded-3xl p-6">
+                        <h4 class="text-xl font-bold">Backend Developer Intern</h4>
+
+                        <p class="text-slate-400 mt-2">Applicants: 80</p>
+
+                        <div class="flex gap-3 mt-5">
+                            <button class="bg-primary text-primaryDark px-5 py-2 rounded-xl">
+                                View
+                            </button>
+
+                            <button class="bg-slate-700 px-5 py-2 rounded-xl">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- APPLICANTS -->
+
+            <section class="mt-10 bg-slate-900/70 border border-cyan-900 rounded-3xl p-6">
+                <h3 class="text-xl font-bold mb-5">Recent Applicants</h3>
+
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center bg-slate-800 p-4 rounded-xl">
+                        <div>
+                            <h4 class="font-semibold">Saima Sultana</h4>
+
+                            <p class="text-sm text-slate-400">Frontend Developer</p>
+                        </div>
+
+                        <div class="flex gap-2">
+                            <button class="bg-green-500/20 text-green-400 px-4 py-2 rounded-lg">
+                                Accept
+                            </button>
+
+                            <button class="bg-red-500/20 text-red-400 px-4 py-2 rounded-lg">
+                                Reject
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center bg-slate-800 p-4 rounded-xl">
+                        <div>
+                            <h4 class="font-semibold">Jannat Akther</h4>
+
+                            <p class="text-sm text-slate-400">Python Developer</p>
+                        </div>
+
+                        <div class="flex gap-2">
+                            <button class="bg-green-500/20 text-green-400 px-4 py-2 rounded-lg">
+                                Accept
+                            </button>
+
+                            <button class="bg-red-500/20 text-red-400 px-4 py-2 rounded-lg">
+                                Reject
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
