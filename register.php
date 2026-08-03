@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CareerMatch - Register</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primaryDark: "#091D3E",
+                        primary: "#06B6D4",
+                        secondary: "#67E8F9",
+                        cream: "#F8FAFC",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="bg-primaryDark text-cream min-h-screen flex items-center justify-center">
+    <!-- Glow -->
+    <div class="absolute w-72 h-72 bg-primary/20 blur-3xl rounded-full top-10 left-10"></div>
+    <div class="absolute w-72 h-72 bg-secondary/10 blur-3xl rounded-full bottom-10 right-10"></div>
+
+    <!-- CARD -->
+    <div class="relative w-full max-w-lg bg-slate-900/70 backdrop-blur-lg border border-cyan-900 rounded-3xl p-10">
+        <!-- HEADER -->
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-bold">
+                Career<span class="text-primary"> Match </span>
+            </h1>
+            <div class="w-16 h-[2px] bg-primary mx-auto mt-3"></div>
+            <h2 class="text-xl font-semibold mt-5">Create Your Account</h2>
+            <p class="text-slate-400 mt-2 text-sm">Choose your role to continue</p>
+        </div>
+
+        <!-- ROLE BUTTONS -->
+        <div class="space-y-5">
+            <a href="student_register.php"
+                class="block bg-slate-800 border border-cyan-900 rounded-2xl p-5 hover:border-primary hover:bg-slate-700 transition">
+                <div class="flex items-center gap-5">
+                    <div class="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center text-3xl">
+                        🎓
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold">Student</h3>
+                        <p class="text-sm text-slate-400">
+                            Find internships and grow your career
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <a href="company_register.php"
+                class="block bg-slate-800 border border-cyan-900 rounded-2xl p-5 hover:border-primary hover:bg-slate-700 transition">
+                <div class="flex items-center gap-5">
+                    <div class="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center text-3xl">
+                        🏢
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold">Company</h3>
+                        <p class="text-sm text-slate-400">
+                            Post internships and hire talent
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <a href="admin_register.php"
+                class="block bg-slate-800 border border-cyan-900 rounded-2xl p-5 hover:border-primary hover:bg-slate-700 transition">
+                <div class="flex items-center gap-5">
+                    <div class="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center text-3xl">
+                        ⚙️
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold">Admin</h3>
+                        <p class="text-sm text-slate-400">Manage CareerMatch platform</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- LOGIN -->
+        <p class="text-center text-slate-400 text-sm mt-8">
+            Already have an account?
+            <a href="login.php" class="text-primary hover:underline"> Login </a>
+        </p>
+    </div>
+</body>
+
+</html>
