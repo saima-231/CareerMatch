@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CareerMatch - Student Dashboard</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primaryDark: "#091D3E",
+                        primary: "#06B6D4",
+                        secondary: "#67E8F9",
+                        cream: "#F8FAFC",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="bg-primaryDark text-cream min-h-screen">
+    <!-- Background Glow -->
+
+    <div class="fixed w-96 h-96 bg-primary/20 blur-3xl rounded-full top-0 left-0"></div>
+
+    <div class="fixed w-96 h-96 bg-secondary/10 blur-3xl rounded-full bottom-0 right-0"></div>
+
+    <div class="relative flex min-h-screen">
+        <!-- SIDEBAR -->
+
+        <aside class="hidden md:flex w-72 bg-slate-900/70 backdrop-blur-lg border-r border-cyan-900 flex-col p-6">
+            <!-- Logo -->
+
+            <div class="text-center mb-10">
+                <h1 class="text-3xl font-bold">
+                    Career<span class="text-primary"> Match </span>
+                </h1>
+
+                <div class="w-16 h-[2px] bg-primary mx-auto mt-3"></div>
+            </div>
+
+            <!-- Menu -->
+
+            <nav class="space-y-4">
+                <a href="#" class="block px-4 py-3 rounded-xl bg-primary text-primaryDark font-semibold">
+                    🏠 Dashboard
+                </a>
+
+                <a href="#" class="block px-4 py-3 rounded-xl hover:bg-slate-800">
+                    🔎 Find Internship
+                </a>
+
+                <a href="#" class="block px-4 py-3 rounded-xl hover:bg-slate-800">
+                    📄 Applications
+                </a>
+
+                <a href="#" class="block px-4 py-3 rounded-xl hover:bg-slate-800">
+                    👤 Profile
+                </a>
+            </nav>
+
+            <!-- Logout -->
+
+            <div class="mt-auto">
+                <a href="login.html"
+                    class="block text-center bg-red-500/20 border border-red-500/40 py-3 rounded-xl hover:bg-red-500/40">
+                    Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN AREA -->
+
+        <main class="flex-1 p-6 md:p-10">
+            <!-- TOP BAR -->
+
+            <div class="flex justify-between items-center mb-10">
+                <div>
+                    <h2 class="text-3xl font-bold">
+                        Welcome, <span class="text-primary"> Saima Sultana </span>
+
+                        👋
+                    </h2>
+
+                    <p class="text-slate-400 mt-2">Find your dream internship today</p>
+                </div>
+
+                <div class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-3xl">
+                    🎓
+                </div>
+            </div>
+
+            <!-- PROFILE CARD -->
+
+            <section class="bg-slate-900/70 border border-cyan-900 rounded-3xl p-6 mb-8">
+                <h3 class="text-xl font-bold mb-5">Student Profile</h3>
+
+                <div class="grid md:grid-cols-3 gap-5">
+                    <div>
+                        <p class="text-slate-400 text-sm">University</p>
+
+                        <p class="font-semibold">Metropolitan University</p>
+                    </div>
+
+                    <div>
+                        <p class="text-slate-400 text-sm">Department</p>
+
+                        <p class="font-semibold">Computer Science & Enginnering</p>
+                    </div>
+
+                    <div>
+                        <p class="text-slate-400 text-sm">Skills</p>
+
+                        <p class="font-semibold">HTML, CSS, JavaScript</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEARCH -->
+            <section class="bg-slate-900/70 border border-cyan-900 rounded-3xl p-6 mb-8">
+                <h3 class="text-xl font-bold mb-5">Search Internship</h3>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <input placeholder="Search internship..."
+                        class="flex-1 bg-slate-800 border border-cyan-900 rounded-xl px-5 py-3 outline-none focus:border-primary" />
+
+                    <button class="bg-primary text-primaryDark px-8 rounded-xl font-semibold">
+                        Search
+                    </button>
+                </div>
+            </section>
+
+            <!-- INTERNSHIPS -->
+
+            <section>
+                <h3 class="text-2xl font-bold mb-5">Recommended Internships</h3>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-slate-900/70 border border-cyan-900 rounded-3xl p-6">
+                        <h4 class="text-xl font-bold">Frontend Developer Intern</h4>
+
+                        <p class="text-slate-400 mt-2">Tech Solutions Ltd.</p>
+
+                        <p class="text-primary mt-3">Remote • 3 Months</p>
+
+                        <button class="mt-5 bg-primary text-primaryDark px-6 py-2 rounded-xl font-semibold">
+                            Apply Now
+                        </button>
+                    </div>
+
+                    <div class="bg-slate-900/70 border border-cyan-900 rounded-3xl p-6">
+                        <h4 class="text-xl font-bold">Data Science Intern</h4>
+
+                        <p class="text-slate-400 mt-2">AI Research Lab</p>
+
+                        <p class="text-primary mt-3">Onsite • 6 Months</p>
+
+                        <button class="mt-5 bg-primary text-primaryDark px-6 py-2 rounded-xl font-semibold">
+                            Apply Now
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- APPLICATION STATUS -->
+
+            <section class="mt-10 bg-slate-900/70 border border-cyan-900 rounded-3xl p-6">
+                <h3 class="text-xl font-bold mb-5">Application Status</h3>
+
+                <div class="space-y-4">
+                    <div class="flex justify-between bg-slate-800 p-4 rounded-xl">
+                        <span> Frontend Developer </span>
+
+                        <span class="text-yellow-400"> Pending </span>
+                    </div>
+
+                    <div class="flex justify-between bg-slate-800 p-4 rounded-xl">
+                        <span> Python Intern </span>
+
+                        <span class="text-green-400"> Accepted </span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
