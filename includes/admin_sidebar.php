@@ -31,7 +31,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 
         <!-- Students -->
-        <a href="/careermatch/admin/students.php"
+        <a href="../admin/students.php"
             class="block px-4 py-3 rounded-xl
         <?= ($currentPage == 'students.php')
             ? 'bg-primary text-primaryDark font-semibold'
@@ -42,7 +42,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 
         <!-- Companies -->
-        <a href="/careermatch/admin/companies.php"
+        <a href="../admin/companies.php"
             class="block px-4 py-3 rounded-xl
         <?= ($currentPage == 'companies.php')
             ? 'bg-primary text-primaryDark font-semibold'
@@ -53,7 +53,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 
         <!-- Internships -->
-        <a href="/careermatch/admin/internships.php"
+        <a href="../admin/internships.php"
             class="block px-4 py-3 rounded-xl
         <?= ($currentPage == 'internships.php')
             ? 'bg-primary text-primaryDark font-semibold'
@@ -64,7 +64,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 
         <!-- Applications -->
-        <a href="/careermatch/admin/applications.php"
+        <a href="../admin/applications.php"
             class="block px-4 py-3 rounded-xl
         <?= ($currentPage == 'applications.php')
             ? 'bg-primary text-primaryDark font-semibold'
@@ -75,18 +75,15 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 
         <!-- Reports -->
-        <a href="/careermatch/admin/reports.php"
+        <a href="../admin/reports.php"
             class="block px-4 py-3 rounded-xl
         <?= ($currentPage == 'reports.php')
             ? 'bg-primary text-primaryDark font-semibold'
             : 'hover:bg-slate-800 text-white' ?>">
             📊 Reports
         </a>
-
-
-
         <!-- Settings -->
-        <a href="/careermatch/admin/settings.php"
+        <a href="../admin/settings.php"
             class="block px-4 py-3 rounded-xl
         <?= ($currentPage == 'settings.php')
             ? 'bg-primary text-primaryDark font-semibold'
@@ -96,7 +93,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 
         <!-- Home -->
-        <a href="/careermatch/index.php"
+        <a href="../index.php"
             class="block px-4 py-3 rounded-xl hover:bg-slate-800 text-white">
             🏠 Back to Home
         </a>
@@ -109,7 +106,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <!-- LOGOUT -->
     <div class="mt-auto">
 
-        <a href="/careermatch/logout.php"
+        <a href="../logout.php"
             class="block text-center bg-red-500/20 border border-red-500/40 
         px-4 py-3 rounded-xl hover:bg-red-500/40 text-white">
 

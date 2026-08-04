@@ -100,7 +100,7 @@ $internships = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     💼
 
                 </h1>
-                <a href="/careermatch/dashboard/admin_dashboard.php"
+                <a href="../dashboard/admin_dashboard.php"
                     class="bg-cyan-400 text-black px-5 py-3 rounded-xl font-bold">
                     Dashboard
                 </a>

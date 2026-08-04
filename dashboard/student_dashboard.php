@@ -76,15 +76,15 @@ $applications = $app_stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="w-16 h-[2px] bg-primary mx-auto mt-3"></div>
             </div>
             <nav class="space-y-4">
-                <a href="/careermatch/dashboard/student_dashboard.php"
+                <a href="../dashboard/student_dashboard.php"
                     class="block px-4 py-3 rounded-xl bg-primary text-primaryDark font-semibold">
                     🏠 Profile
                 </a>
-                <a href="/careermatch/student/internship.php"
+                <a href="../student/internship.php"
                     class="block px-4 py-3 rounded-xl hover:bg-slate-800">
                     🔎 Find Internship
                 </a>
-                <a href="/careermatch/student/applications.php"
+                <a href="../student/applications.php"
                     class="block px-4 py-3 rounded-xl hover:bg-slate-800">
                     📄 Applications
                 </a>

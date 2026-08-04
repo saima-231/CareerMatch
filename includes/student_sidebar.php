@@ -19,7 +19,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 
         <!-- Dashboard -->
-        <a href="/careermatch/dashboard/student_dashboard.php"
+        <a href="../dashboard/student_dashboard.php"
             class="block px-4 py-3 rounded-xl 
             <?= ($currentPage == 'student_dashboard.php')
                 ? 'bg-primary text-primaryDark font-semibold'
@@ -29,7 +29,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 
         <!-- Internship -->
-        <a href="/careermatch/student/internship.php"
+        <a href="../student/internship.php"
             class="block px-4 py-3 rounded-xl 
             <?= ($currentPage == 'internship.php')
                 ? 'bg-primary text-primaryDark font-semibold'
@@ -39,7 +39,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 
         <!-- Applications -->
-        <a href="/careermatch/student/applications.php"
+        <a href="../student/applications.php"
             class="block px-4 py-3 rounded-xl 
             <?= ($currentPage == 'applications.php')
                 ? 'bg-primary text-primaryDark font-semibold'
@@ -49,7 +49,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 
         <!-- Home -->
-        <a href="/careermatch/index.php"
+        <a href="../index.php"
             class="block px-4 py-3 rounded-xl 
             <?= ($currentPage == 'index.php')
                 ? 'bg-primary text-primaryDark font-semibold'
@@ -64,7 +64,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <!-- LOGOUT -->
     <div class="mt-auto">
 
-        <a href="/careermatch/logout.php"
+        <a href="../logout.php"
             class="block text-center bg-red-500/20 border border-red-500/40 
             px-4 py-3 rounded-xl hover:bg-red-500/40 text-white">
             Logout

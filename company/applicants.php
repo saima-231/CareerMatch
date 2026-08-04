@@ -118,7 +118,7 @@ $applicants = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                 <?php if (!empty($applicant['resume'])): ?>
 
-                                    <a href="/careermatch/uploads/resumes/<?= $applicant['resume']; ?>"
+                                    <a href="../uploads/resumes/<?= $applicant['resume']; ?>"
                                         target="_blank"
                                         class="bg-primary text-black px-5 py-3 rounded-xl font-semibold">
                                         View Resume
@@ -129,7 +129,7 @@ $applicants = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                     <?php if (!empty($applicant['resume'])): ?>
 
-                                        <a href="/careermatch/uploads/resumes/<?= $applicant['resume']; ?>"
+                                        <a href="../uploads/resumes/<?= $applicant['resume']; ?>"
                                             target="_blank"
                                             class="bg-primary text-black px-5 py-3 rounded-xl font-semibold">
                                             View Resume
@@ -140,12 +140,12 @@ $applicants = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                     <?php if ($applicant['status'] == "Pending"): ?>
 
-                                        <a href="/careermatch/company/update_application.php?id=<?= $applicant['application_id']; ?>&status=Approved"
+                                        <a href="../company/update_application.php?id=<?= $applicant['application_id']; ?>&status=Approved"
                                             class="bg-green-500 text-white px-5 py-3 rounded-xl font-semibold">
                                             Approve
                                         </a>
 
-                                        <a href="/careermatch/company/update_application.php?id=<?= $applicant['application_id']; ?>&status=Rejected"
+                                        <a href="../company/update_application.php?id=<?= $applicant['application_id']; ?>&status=Rejected"
                                             class="bg-red-500 text-white px-5 py-3 rounded-xl font-semibold">
                                             Reject
                                         </a>

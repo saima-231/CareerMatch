@@ -79,19 +79,19 @@ $internships = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 Career<span class="text-primary">Match</span>
             </h1>
             <div class="space-x-6">
-                <a href="/careermatch/index.php"
+                <a href="../index.php"
                     class="hover:text-secondary">
                     Home
                 </a>
-                <a href="/careermatch/internships.php"
+                <a href="../internships.php"
                     class="text-secondary">
                     Internships
                 </a>
-                <a href="/careermatch/companies.php"
+                <a href="../companies.php"
                     class="hover:text-secondary">
                     Companies
                 </a>
-                <a href="/careermatch/login.php"
+                <a href="../login.php"
                     class="bg-primary text-primaryDark px-5 py-2 rounded-xl font-semibold">
                     Login
                 </a>
@@ -149,12 +149,12 @@ $internships = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <?php endif; ?>
                             </div>
                             <?php if (isset($_SESSION['student_id'])): ?>
-                                <a href="/careermatch/student/apply.php?id=<?php echo $internship['internship_id']; ?>"
+                                <a href="../student/apply.php?id=<?php echo $internship['internship_id']; ?>"
                                     class="inline-block mt-5 bg-primary text-primaryDark px-5 py-2 rounded-xl font-semibold">
                                     Apply
                                 </a>
                             <?php else: ?>
-                                <a href="/careermatch/login.php"
+                                <a href="../login.php"
                                     class="inline-block mt-5 bg-primary text-primaryDark px-5 py-2 rounded-xl font-semibold">
                                     Apply
                                 </a>

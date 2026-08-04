@@ -161,15 +161,15 @@ $recent_applicants = $recent_stmt->fetchAll(PDO::FETCH_ASSOC);
                     class="block px-4 py-3 rounded-xl bg-primary text-primaryDark font-semibold">
                     🏢 Profile
                 </a>
-                <a href="/careermatch/company/post_internship.php"
+                <a href="../company/post_internship.php"
                     class="block px-4 py-3 rounded-xl hover:bg-slate-800">
                     ➕ Post Internship
                 </a>
-                <a href="/careermatch/company/manage_internships.php"
+                <a href="../company/manage_internships.php"
                     class="block px-4 py-3 rounded-xl hover:bg-slate-800">
                     📋 My Internships
                 </a>
-                <a href="/careermatch/company/applicants.php"
+                <a href="../company/applicants.php"
                     class="block px-4 py-3 rounded-xl hover:bg-slate-800">
                     👥 Applicants
                 </a>
@@ -240,7 +240,7 @@ $recent_applicants = $recent_stmt->fetchAll(PDO::FETCH_ASSOC);
             <section class="bg-slate-900/70 border border-cyan-900 rounded-3xl p-6 mb-8">
                 <div class="flex justify-between items-center">
                     <h3 class="text-xl font-bold">Post New Internship</h3>
-                    <a href="/careermatch/company/post_internship.php"
+                    <a href="../company/post_internship.php"
                         class="bg-primary text-primaryDark px-5 py-2 rounded-xl font-semibold">
                         + Create
                     </a>
@@ -278,7 +278,7 @@ $recent_applicants = $recent_stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <?php foreach ($recent_applicants as $applicant): ?>
 
-                        <div class="border-b border-slate-700 pb-4 mb-4">
+                        <div class="border-b border-slate-700 pb-4">
 
                             <h4 class="text-lg font-semibold text-white">
                                 <?= htmlspecialchars($applicant['full_name']); ?>

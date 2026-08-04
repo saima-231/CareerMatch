@@ -86,7 +86,7 @@ $internships = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         Manage your internship postings
                     </p>
                 </div>
-                <a href="/careermatch/company/post_internship.php"
+                <a href="../company/post_internship.php"
                     class="bg-cyan-400 text-black px-5 py-3 rounded-xl font-bold">
                     + Post Internship
                 </a>
@@ -153,13 +153,13 @@ $internships = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <div class="flex gap-3 mt-6">
                                 <?php if ($internship['deadline'] >= date("Y-m-d")): ?>
 
-                                    <a href="/careermatch/company/edit_internship.php?id=<?php echo $internship['internship_id']; ?>"
+                                    <a href="../company/edit_internship.php?id=<?php echo $internship['internship_id']; ?>"
                                         class="bg-yellow-500 text-black px-5 py-3 rounded-xl font-semibold">
                                         Edit
                                     </a>
 
                                 <?php endif; ?>
-                                <a href="/careermatch/company/manage_internships.php?delete=<?php echo $internship['internship_id']; ?>" onclick="return confirm('Delete this internship?')"
+                                <a href="../company/manage_internships.php?delete=<?php echo $internship['internship_id']; ?>" onclick="return confirm('Delete this internship?')"
                                     class="bg-red-500 text-white px-5 py-3 rounded-xl font-semibold">
                                     Delete
                                 </a>
@@ -172,7 +172,7 @@ $internships = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <p class="text-gray-400">
                         No internships posted yet.
                     </p>
-                    <a href="/careermatch/company/post_internship.php"
+                    <a href="../company/post_internship.php"
                         class="inline-block mt-5 bg-cyan-400 text-black px-5 py-3 rounded-xl">
                         Create Internship
                     </a>

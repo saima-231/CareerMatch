@@ -5,7 +5,11 @@ include "config/database.php";
 $admin_code = "CAREERMATCH_ADMIN_2026";
 // Protect page access
 if (!isset($_GET['code']) || $_GET['code'] != $admin_code) {
-    die("Access Denied");
+    echo "<script>
+alert('Access Denied.');
+window.location='login.php';
+</script>";
+    exit();
 }
 // When form submitted
 if (isset($_POST['register'])) {

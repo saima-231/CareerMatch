@@ -53,19 +53,19 @@ $companies = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 Career<span class="text-primary">Match</span>
             </h1>
             <div class="space-x-6">
-                <a href="/careermatch/index.php"
+                <a href="../index.php"
                     class="hover:text-secondary">
                     Home
                 </a>
-                <a href="/careermatch/student/internship.php"
+                <a href="../student/internship.php"
                     class="hover:text-secondary">
                     Internships
                 </a>
-                <a href="/careermatch/companies.php"
+                <a href="../companies.php"
                     class="text-secondary">
                     Companies
                 </a>
-                <a href="/careermatch/login.php"
+                <a href="../login.php"
                     class="bg-primary text-primaryDark px-5 py-2 rounded-xl font-semibold">
                     Login
                 </a>

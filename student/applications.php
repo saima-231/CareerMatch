@@ -95,7 +95,7 @@ $applications = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <p class="text-gray-400">
                         You have not applied for any internship yet.
                     </p>
-                    <a href="/careermatch/student/internship.php"
+                    <a href="../student/internship.php"
                         class="inline-block mt-5 bg-cyan-400 text-black px-5 py-3 rounded-xl font-bold">
                         Find Internship
                     </a>

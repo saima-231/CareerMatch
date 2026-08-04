@@ -78,10 +78,10 @@ if (isset($_SESSION['student_id'])) {
                 <a href="index.php" class="hover:text-secondary">
                     Home
                 </a>
-                <a href="/careermatch/internships.php" class="hover:text-secondary">
+                <a href="../internships.php" class="hover:text-secondary">
                     Internships
                 </a>
-                <a href="/careermatch/companies.php" class="hover:text-secondary">
+                <a href="../companies.php" class="hover:text-secondary">
                     Companies
                 </a>
                 <?php if ($user): ?>
@@ -141,7 +141,7 @@ if (isset($_SESSION['student_id'])) {
                         <!-- SEARCH -->
                         <div class="relative mt-8 max-w-xl">
 
-                            <form action="/careermatch/internships.php" method="GET"
+                            <form action="../internships.php" method="GET"
                                 class="bg-white rounded-2xl p-2 flex flex-col sm:flex-row gap-2 shadow-2xl">
 
                                 <input
@@ -356,7 +356,7 @@ if (isset($_SESSION['student_id'])) {
                 </p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-14">
-                <a href="/careermatch/internships.php?category=Web Development"
+                <a href="../internships.php?category=Web Development"
                     class="group block p-8 rounded-3xl border border-cyan-400/50 shadow-[0_0_20px_rgba(34,211,238,0.15)] hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] hover:-translate-y-1 transition-all duration-300">
                     <div
                         class="w-14 h-14 bg-cyan-200/40 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition">
@@ -364,7 +364,7 @@ if (isset($_SESSION['student_id'])) {
                     </div>
                     <h3 class="mt-5 font-semibold text-lg">Web Development</h3>
                 </a>
-                <a href="/careermatch/internships.php?category=UI/UX Design"
+                <a href="../internships.php?category=UI/UX Design"
                     class="group p-8 rounded-3xl border border-emerald-400/50 shadow-[0_0_20px_rgba(52,211,153,0.15)] hover:shadow-[0_0_30px_rgba(52,211,153,0.3)] hover:-translate-y-1 transition-all duration-300">
                     <div
                         class="w-14 h-14 bg-emerald-200/40 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition">
@@ -372,7 +372,7 @@ if (isset($_SESSION['student_id'])) {
                     </div>
                     <h3 class="mt-5 font-semibold text-lg">UI/UX Design</h3>
                 </a>
-                <a href="/careermatch/internships.php?category=Data Science"
+                <a href="../internships.php?category=Data Science"
                     class="group p-8 rounded-3xl border border-violet-400/50 shadow-[0_0_20px_rgba(167,139,250,0.15)] hover:shadow-[0_0_30px_rgba(167,139,250,0.3)] hover:-translate-y-1 transition-all duration-300">
                     <div
                         class="w-14 h-14 bg-violet-200/40 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition">
@@ -380,7 +380,7 @@ if (isset($_SESSION['student_id'])) {
                     </div>
                     <h3 class="mt-5 font-semibold text-lg">Data Science</h3>
                 </a>
-                <a href="/careermatch/internships.php?category=Cloud & DevOps"
+                <a href="../internships.php?category=Cloud & DevOps"
                     class="group p-8 rounded-3xl border border-sky-400/50 shadow-[0_0_20px_rgba(56,189,248,0.15)] hover:shadow-[0_0_30px_rgba(56,189,248,0.3)] hover:-translate-y-1 transition-all duration-300">
                     <div
                         class="w-14 h-14 bg-sky-200/40 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition">
@@ -388,7 +388,7 @@ if (isset($_SESSION['student_id'])) {
                     </div>
                     <h3 class="mt-5 font-semibold text-lg">Cloud & DevOps</h3>
                 </a>
-                <a href="/careermatch/internships.php?category=Software Testing"
+                <a href="../internships.php?category=Software Testing"
                     class="group p-8 rounded-3xl border border-lime-400/50 shadow-[0_0_20px_rgba(163,230,53,0.15)] hover:shadow-[0_0_30px_rgba(163,230,53,0.3)] hover:-translate-y-1 transition-all duration-300">
                     <div
                         class="w-14 h-14 bg-lime-200/40 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition">
@@ -396,7 +396,7 @@ if (isset($_SESSION['student_id'])) {
                     </div>
                     <h3 class="mt-5 font-semibold text-lg">Software Testing</h3>
                 </a>
-                <a href="/careermatch/internships.php?category=Artificial Intelligence"
+                <a href="../internships.php?category=Artificial Intelligence"
                     class="group p-8 rounded-3xl border border-indigo-400/50 shadow-[0_0_20px_rgba(129,140,248,0.15)] hover:shadow-[0_0_30px_rgba(129,140,248,0.3)] hover:-translate-y-1 transition-all duration-300">
                     <div
                         class="w-14 h-14 bg-indigo-200/40 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition">
@@ -404,7 +404,7 @@ if (isset($_SESSION['student_id'])) {
                     </div>
                     <h3 class="mt-5 font-semibold text-lg">Artificial Intelligence</h3>
                 </a>
-                <a href="/careermatch/internships.php?category=Networking"
+                <a href="../internships.php?category=Networking"
                     class="group block p-8 rounded-3xl border border-blue-400/50 shadow-[0_0_20px_rgba(96,165,250,0.15)] hover:shadow-[0_0_30px_rgba(96,165,250,0.3)] hover:-translate-y-1 transition-all duration-300">
 
                     <div
@@ -415,7 +415,7 @@ if (isset($_SESSION['student_id'])) {
                         Networking
                     </h3>
                 </a>
-                <a href="/careermatch/internships.php?category=Graphic Design"
+                <a href="../internships.php?category=Graphic Design"
                     class="group block p-8 rounded-3xl border border-pink-400/50 shadow-[0_0_20px_rgba(244,114,182,0.15)] hover:shadow-[0_0_30px_rgba(244,114,182,0.3)] hover:-translate-y-1 transition-all duration-300">
                     <div
                         class="w-14 h-14 bg-pink-200/40 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition">

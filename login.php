@@ -35,18 +35,23 @@ if (isset($_POST['login'])) {
         ]);
         $company = $stmt->fetch(PDO::FETCH_ASSOC);
         if (!$company) {
-            die("Company email not found.");
+            echo "<script>
+alert('Company email not found.');
+window.location='login.php';
+</script>";
+            exit();
         }
-        echo "<pre>";
-        print_r($company);
-        echo "</pre>";
         if ($password == $company['password']) {
             $_SESSION['company_id'] = $company['company_id'];
             $_SESSION['company_name'] = $company['company_name'];
             header("Location: dashboard/company_dashboard.php");
             exit();
         } else {
-            die("Password does not match.");
+            echo "<script>
+alert('Invalid email or password.');
+window.location='login.php';
+</script>";
+            exit();
         }
     }
 

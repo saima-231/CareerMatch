@@ -13,7 +13,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <!-- MENU -->
     <nav class="space-y-4">
         <!-- Dashboard -->
-        <a href="/careermatch/dashboard/company_dashboard.php"
+        <a href="../dashboard/company_dashboard.php"
             class="block px-4 py-3 rounded-xl
 <?= ($currentPage == 'company_dashboard.php')
     ? 'bg-primary text-primaryDark font-semibold'
@@ -21,7 +21,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             👤 Profile
         </a>
         <!-- Post Internship -->
-        <a href="/careermatch/company/post_internship.php"
+        <a href="../company/post_internship.php"
             class="block px-4 py-3 rounded-xl
         <?= ($currentPage == 'post_internship.php')
             ? 'bg-primary text-primaryDark font-semibold'
@@ -29,7 +29,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             ➕ Post Internship
         </a>
         <!-- Manage Internship -->
-        <a href="/careermatch/company/manage_internships.php"
+        <a href="../company/manage_internships.php"
             class="block px-4 py-3 rounded-xl
         <?= ($currentPage == 'manage_internships.php')
             ? 'bg-primary text-primaryDark font-semibold'
@@ -37,7 +37,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             💼 Manage Internships
         </a>
         <!-- Applicants -->
-        <a href="/careermatch/company/applicants.php"
+        <a href="../company/applicants.php"
             class="block px-4 py-3 rounded-xl
         <?= ($currentPage == 'applicants.php')
             ? 'bg-primary text-primaryDark font-semibold'
@@ -45,14 +45,14 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             📄 Applicants
         </a>
         <!-- Home -->
-        <a href="/careermatch/index.php"
+        <a href="../index.php"
             class="block px-4 py-3 rounded-xl hover:bg-slate-800 text-white">
             🏠 Back to Home
         </a>
     </nav>
     <!-- LOGOUT -->
     <div class="mt-auto">
-        <a href="/careermatch/logout.php"
+        <a href="../logout.php"
             class="block text-center bg-red-500/20 border border-red-500/40 
         px-4 py-3 rounded-xl hover:bg-red-500/40 text-white">
             Logout
