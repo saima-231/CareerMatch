@@ -19,7 +19,6 @@ if (isset($_POST['login'])) {
             $_SESSION['student_id'] = $student['student_id'];
             $_SESSION['student_name'] = $student['full_name'];
             header("Location: dashboard/student_dashboard.php");
-
             exit();
         } else {
             echo "<script>alert('Invalid Student Email or Password');</script>";
@@ -28,11 +27,9 @@ if (isset($_POST['login'])) {
 
     // COMPANY LOGIN
     elseif ($role == "company") {
-
         $stmt = $pdo->prepare(
             "SELECT * FROM companies WHERE email = :email"
         );
-
         $stmt->execute([
             ":email" => $email
         ]);
@@ -40,11 +37,9 @@ if (isset($_POST['login'])) {
         if (!$company) {
             die("Company email not found.");
         }
-
         echo "<pre>";
         print_r($company);
         echo "</pre>";
-
         if ($password == $company['password']) {
             $_SESSION['company_id'] = $company['company_id'];
             $_SESSION['company_name'] = $company['company_name'];
@@ -64,13 +59,15 @@ if (isset($_POST['login'])) {
             ":email" => $email
         ]);
         $admin = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($admin && $password == $admin['password']) {
+        if ($admin && password_verify($password, $admin['password'])) {
             $_SESSION['admin_id'] = $admin['admin_id'];
             $_SESSION['admin_name'] = $admin['full_name'];
             header("Location: dashboard/admin_dashboard.php");
             exit();
         } else {
-            echo "<script>alert('Invalid Admin Email or Password');</script>";
+            echo "<script>
+        alert('Invalid Admin Email or Password');
+        </script>";
         }
     }
 }
