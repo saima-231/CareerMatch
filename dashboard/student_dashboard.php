@@ -166,12 +166,44 @@ $applications = $app_stmt->fetchAll(PDO::FETCH_ASSOC);
                 </h3>
                 <form action="../internships.php" method="GET"
                     class="flex flex-col md:flex-row gap-4">
-                    <input
-                        type="text"
-                        name="search"
-                        placeholder="Search internship..."
-                        class="flex-1 bg-slate-800 border border-cyan-900 rounded-xl px-5 py-3 outline-none focus:border-primary"
-                        required>
+                    <div class="relative flex-1">
+                        <input
+                            type="text"
+                            id="searchBox"
+                            name="search"
+                            placeholder="Search internship..."
+                            class="w-full bg-slate-800 border border-cyan-900 rounded-xl px-5 py-3 outline-none focus:border-primary"
+                            autocomplete="off"
+                            required>
+                        <!-- Suggestions -->
+                        <div id="suggestions"
+                            class="absolute z-10 w-full bg-slate-800 border border-cyan-900 rounded-xl mt-2 hidden overflow-hidden">
+                            <div class="suggestion px-5 py-3 hover:bg-cyan-900 cursor-pointer">
+                                Web Development
+                            </div>
+                            <div class="suggestion px-5 py-3 hover:bg-cyan-900 cursor-pointer">
+                                Cloud & DevOps
+                            </div>
+                            <div class="suggestion px-5 py-3 hover:bg-cyan-900 cursor-pointer">
+                                Data Science
+                            </div>
+                            <div class="suggestion px-5 py-3 hover:bg-cyan-900 cursor-pointer">
+                                Artificial Intelligence
+                            </div>
+                            <div class="suggestion px-5 py-3 hover:bg-cyan-900 cursor-pointer">
+                                UI/UX Design
+                            </div>
+                            <div class="suggestion px-5 py-3 hover:bg-cyan-900 cursor-pointer">
+                                Networking
+                            </div>
+                            <div class="suggestion px-5 py-3 hover:bg-cyan-900 cursor-pointer">
+                                Software Testing
+                            </div>
+                            <div class="suggestion px-5 py-3 hover:bg-cyan-900 cursor-pointer">
+                                Graphic Design
+                            </div>
+                        </div>
+                    </div>
                     <button
                         type="submit"
                         class="bg-primary text-primaryDark px-8 py-3 rounded-xl font-semibold">
@@ -221,9 +253,76 @@ $applications = $app_stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php endif; ?>
                 </div>
             </section>
-
         </main>
     </div>
+    <script>
+        const searchBox = document.getElementById("searchBox");
+        const suggestions = document.getElementById("suggestions");
+        const items = document.querySelectorAll(".suggestion");
+
+
+        // Show all suggestions when clicking search box
+        searchBox.addEventListener("focus", function() {
+
+            items.forEach(item => {
+                item.style.display = "block";
+            });
+
+            suggestions.classList.remove("hidden");
+
+        });
+
+
+        // Filter suggestions while typing
+        searchBox.addEventListener("keyup", function() {
+
+            let value = searchBox.value.toLowerCase();
+
+            let found = false;
+
+            items.forEach(item => {
+
+                let text = item.innerText.toLowerCase();
+
+                if (text.includes(value)) {
+                    item.style.display = "block";
+                    found = true;
+                } else {
+                    item.style.display = "none";
+                }
+
+            });
+
+
+            if (found) {
+                suggestions.classList.remove("hidden");
+            } else {
+                suggestions.classList.add("hidden");
+            }
+
+        });
+
+
+        // Select suggestion
+        items.forEach(item => {
+
+            item.addEventListener("click", function() {
+
+                searchBox.value = this.innerText;
+
+                suggestions.classList.add("hidden");
+
+            });
+
+        });
+
+        // Hide when clicking outside
+        document.addEventListener("click", function(e) {
+            if (!searchBox.contains(e.target) && !suggestions.contains(e.target)) {
+                suggestions.classList.add("hidden");
+            }
+        });
+    </script>
 </body>
 
 </html>

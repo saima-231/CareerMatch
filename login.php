@@ -132,19 +132,14 @@ if (isset($_POST['login'])) {
         </div>
 
         <!-- LOGIN FORM -->
-
         <form action="login.php" method="POST" class="space-y-6">
             <!-- Role -->
-
             <div>
                 <label class="text-sm text-slate-300"> Select Role </label>
-
                 <select name="role"
                     class="w-full mt-2 px-4 py-3 rounded-xl bg-slate-800 border border-cyan-900 focus:border-primary outline-none">
                     <option value="student">Student</option>
-
                     <option value="company">Company</option>
-
                     <option value="admin">Admin</option>
                 </select>
             </div>
@@ -176,7 +171,7 @@ if (isset($_POST['login'])) {
                     Remember Me
                 </label>
 
-                <a href="#" class="text-primary hover:underline">
+                <a href="forgot_password.php">
                     Forgot Password?
                 </a>
             </div>
@@ -200,12 +195,12 @@ if (isset($_POST['login'])) {
         </div>
 
         <!-- Google -->
-        <button class="w-full bg-white text-black font-medium py-3 rounded-xl hover:bg-gray-100 transition">
+        <button onclick="alert('Google login will be available soon')"
+            class="...">
             Continue with Google
         </button>
 
         <!-- Register -->
-
         <p class="text-center text-slate-400 text-sm mt-6">
             Don’t have an account?
 

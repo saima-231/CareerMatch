@@ -231,39 +231,29 @@ if (isset($_POST['register'])) {
                 <select name="industry"
                     class="w-full mt-2 px-4 py-3 rounded-xl bg-slate-800 border border-cyan-900 focus:border-primary outline-none">
                     <option value="">Select Industry Type</option>
-
-                    <option value="Software Development">
-                        Software Development
+                    <option value="Software Testing">
+                        Software Testing
                     </option>
-
-                    <option value="IT Services">
-                        IT Services
+                    <option value="Web Development">
+                        Web Development
                     </option>
-
                     <option value="Artificial Intelligence">
                         Artificial Intelligence
                     </option>
-
                     <option value="Data Science">
                         Data Science
                     </option>
                     <option value="Cloud Computing">
                         Cloud Computing
                     </option>
-                    <option value="Cyber Security">
-                        Cyber Security
+                    <option value="Networking">
+                        Networking
                     </option>
                     <option value="UI/UX & Design">
                         UI/UX & Design
                     </option>
-                    <option value="EdTech">
-                        Education Technology
-                    </option>
-                    <option value="FinTech">
-                        Financial Technology
-                    </option>
-                    <option value="Telecommunication">
-                        Telecommunication
+                    <option value="Graphic Design">
+                        Graphic Design
                     </option>
                 </select>
             </div>

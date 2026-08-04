@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "config/database.php";
+include "config/update_jobs.php";
 
 // Search and category filter
 $search = $_GET['search'] ?? '';

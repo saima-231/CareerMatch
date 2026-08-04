@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+include "../config/database.php";
+
+include "../config/update_jobs.php";
 include "../config/database.php";
 if (!isset($_SESSION['student_id'])) {
     header("Location:../login.php");

@@ -113,6 +113,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value="UI/UX Design">
                     UI/UX Design
                 </option>
+                <option value="Networking">
+                    Networking
+                </option>
+                <option value="Software Testing">
+                    Software Testing
+                </option>
+                <option value="Graphic Design">
+                    Graphic Design
+                </option>
             </select>
             <textarea
                 name="description"

@@ -113,80 +113,157 @@ if (isset($_SESSION['student_id'])) {
         <div class="absolute inset-0 bg-black/20"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 w-full">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
-                <!-- LEFT -->
+
+
+                <!-- LEFT SIDE -->
                 <div>
-                    <div
-                        class="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-secondary text-sm">
+
+                    <div class="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-secondary text-sm">
                         Internship Management Platform
                     </div>
+
+
                     <h2 class="text-white text-4xl sm:text-5xl lg:text-6xl font-bold mt-6 leading-tight">
-                        Launch Your <span class="text-secondary">Career</span> Journey
+                        Launch Your
+                        <span class="text-secondary">Career</span> Journey
                     </h2>
+
+
                     <p class="text-white/90 mt-6 text-base sm:text-lg max-w-xl">
                         Discover internships, connect with companies, and track every
                         application from one modern platform.
                     </p>
-                    <!-- SEARCH -->
-                    <form action="/careermatch/internships.php" method="GET"
-                        class="mt-8 bg-white rounded-2xl p-2 flex flex-col sm:flex-row gap-2 shadow-2xl">
 
-                        <input
-                            type="text"
-                            name="search"
-                            placeholder="Search internships..."
-                            class="flex-1 px-4 py-3 outline-none rounded-xl w-full text-black" />
-                        <button
-                            type="submit"
-                            class="bg-primary text-white px-6 py-3 rounded-xl w-full sm:w-auto">
-                            Search
-                        </button>
-                    </form>
-                    <!-- CTA -->
-                    <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                        <a href="/careermatch/internships.php"
-                            class="bg-secondary text-primaryDark font-semibold px-6 py-3 rounded-xl w-full sm:w-auto text-center">
-                            Explore Internships
-                        </a>
-                        <a href="#about"
-                            class="border border-white text-white px-6 py-3 rounded-xl w-full sm:w-auto text-center">
-                            Learn More
-                        </a>
+
+                    <!-- SEARCH -->
+                    <div class="relative mt-8 max-w-xl">
+
+                        <!-- SEARCH -->
+                        <div class="relative mt-8 max-w-xl">
+
+                            <form action="/careermatch/internships.php" method="GET"
+                                class="bg-white rounded-2xl p-2 flex flex-col sm:flex-row gap-2 shadow-2xl">
+
+                                <input
+                                    id="searchBox"
+                                    type="text"
+                                    name="search"
+                                    placeholder="Search internships..."
+                                    autocomplete="off"
+                                    class="flex-1 px-5 py-3 outline-none rounded-xl w-full text-black placeholder-gray-500" />
+
+                                <button
+                                    type="submit"
+                                    class="bg-primary text-white px-8 py-3 rounded-xl font-semibold hover:bg-cyan-500 transition">
+                                    Search
+                                </button>
+
+                            </form>
+
+
+                            <!-- Suggestions -->
+                            <div id="suggestions"
+                                class="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden hidden z-50">
+
+                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                    💻 Web Development
+                                </div>
+
+                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                    ☁️ Cloud & DevOps
+                                </div>
+
+                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                    📊 Data Science
+                                </div>
+
+                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                    🤖 Artificial Intelligence
+                                </div>
+
+                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                    🎨 UI/UX Design
+                                </div>
+
+                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                    🌐 Networking
+                                </div>
+
+                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                    🧪 Software Testing
+                                </div>
+
+                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                    🖌️ Graphic Design
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
+
+
                 </div>
-                <!-- STATS -->
-                <div class="mt-10 lg:mt-0">
+
+
+
+                <!-- RIGHT SIDE -->
+                <div>
+
                     <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8">
+
                         <div class="grid grid-cols-2 gap-4">
+
+
                             <div class="bg-white rounded-2xl p-5">
                                 <h3 class="text-2xl sm:text-3xl font-bold text-primary">
                                     500+
                                 </h3>
-                                <p class="mt-2 text-gray-600 text-sm">Active Internships</p>
+                                <p class="mt-2 text-gray-600 text-sm">
+                                    Active Internships
+                                </p>
                             </div>
+
+
                             <div class="bg-white rounded-2xl p-5">
                                 <h3 class="text-2xl sm:text-3xl font-bold text-primary">
                                     200+
                                 </h3>
-                                <p class="mt-2 text-gray-600 text-sm">Companies</p>
+                                <p class="mt-2 text-gray-600 text-sm">
+                                    Companies
+                                </p>
                             </div>
+
+
                             <div class="bg-white rounded-2xl p-5">
                                 <h3 class="text-2xl sm:text-3xl font-bold text-primary">
                                     5K+
                                 </h3>
-                                <p class="mt-2 text-gray-600 text-sm">Students</p>
+                                <p class="mt-2 text-gray-600 text-sm">
+                                    Students
+                                </p>
                             </div>
+
+
                             <div class="bg-white rounded-2xl p-5">
                                 <h3 class="text-2xl sm:text-3xl font-bold text-primary">
                                     1K+
                                 </h3>
-                                <p class="mt-2 text-gray-600 text-sm">Placements</p>
+                                <p class="mt-2 text-gray-600 text-sm">
+                                    Placements
+                                </p>
                             </div>
+
+
                         </div>
+
                     </div>
+
                 </div>
+
+
             </div>
-        </div>
     </section>
     <!-- ABOUT -->
     <section id="about" class="py-16 md:py-24 lg:py-28 bg-white">
@@ -340,16 +417,13 @@ if (isset($_SESSION['student_id'])) {
                 </a>
                 <a href="/careermatch/internships.php?category=Graphic Design"
                     class="group block p-8 rounded-3xl border border-pink-400/50 shadow-[0_0_20px_rgba(244,114,182,0.15)] hover:shadow-[0_0_30px_rgba(244,114,182,0.3)] hover:-translate-y-1 transition-all duration-300">
-
                     <div
                         class="w-14 h-14 bg-pink-200/40 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition">
                         🖌️
                     </div>
-
                     <h3 class="mt-5 font-semibold text-lg">
                         Graphic Design
                     </h3>
-
                 </a>
             </div>
         </div>
@@ -377,7 +451,6 @@ if (isset($_SESSION['student_id'])) {
                         Apply to internships instantly with a simple and smooth process.
                     </p>
                 </div>
-
                 <div
                     class="group p-8 rounded-3xl bg-white border border-emerald-300/60 shadow-[0_0_18px_rgba(52,211,153,0.18)] hover:shadow-[0_0_40px_rgba(52,211,153,0.35)] hover:-translate-y-2 transition">
                     <div class="text-4xl">🏢</div>
@@ -389,15 +462,12 @@ if (isset($_SESSION['student_id'])) {
                         system.
                     </p>
                 </div>
-
                 <div
                     class="group p-8 rounded-3xl bg-white border border-violet-300/60 shadow-[0_0_18px_rgba(167,139,250,0.18)] hover:shadow-[0_0_40px_rgba(167,139,250,0.35)] hover:-translate-y-2 transition">
                     <div class="text-4xl">📊</div>
-
                     <h3 class="text-xl font-bold mt-4 text-primaryDark">
                         Real-Time Tracking
                     </h3>
-
                     <p class="text-gray-700 mt-2 leading-relaxed">
                         Track application status instantly: pending, accepted, or
                         rejected.
@@ -417,6 +487,47 @@ if (isset($_SESSION['student_id'])) {
             </p>
         </div>
     </footer>
+    <script>
+        const searchBox = document.getElementById("searchBox");
+        const suggestions = document.getElementById("suggestions");
+        const items = document.querySelectorAll(".suggestion");
+
+
+        // Show suggestions when clicking search
+        searchBox.addEventListener("focus", () => {
+            suggestions.classList.remove("hidden");
+        });
+
+
+        // Select suggestion
+        items.forEach(item => {
+
+            item.addEventListener("click", () => {
+
+                // remove emoji before sending search
+                let value = item.innerText.replace(/^[^\w]+/, "");
+
+                searchBox.value = value;
+
+                suggestions.classList.add("hidden");
+
+            });
+
+        });
+
+
+        // Hide when clicking outside
+        document.addEventListener("click", (e) => {
+
+            if (
+                !searchBox.contains(e.target) &&
+                !suggestions.contains(e.target)
+            ) {
+                suggestions.classList.add("hidden");
+            }
+
+        });
+    </script>
 </body>
 
 </html>

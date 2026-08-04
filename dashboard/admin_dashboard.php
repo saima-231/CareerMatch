@@ -108,7 +108,7 @@ $users = $user_stmt->fetchAll(PDO::FETCH_ASSOC);
         <aside class="hidden md:flex w-72 bg-slate-900/70 backdrop-blur-lg border-r border-cyan-900 flex-col p-6">
             <div class="text-center mb-10">
                 <h1 class="text-3xl font-bold">
-                    Career<span class="text-primary"> Match </span>
+                    Career<span class="text-primary">Match </span>
                 </h1>
                 <div class="w-16 h-[2px] bg-primary mx-auto mt-3"></div>
             </div>
@@ -152,12 +152,9 @@ $users = $user_stmt->fetchAll(PDO::FETCH_ASSOC);
                         <span class="text-primary">
                             <?php echo htmlspecialchars($admin['full_name'] ?? 'Admin'); ?>
                         </span>
-                        ⚙️
+                        🔐
                     </h2>
                     <p class="text-slate-400 mt-2">Manage CareerMatch platform</p>
-                </div>
-                <div class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-3xl">
-                    ⚙️
                 </div>
             </div>
             <!-- STATISTICS -->

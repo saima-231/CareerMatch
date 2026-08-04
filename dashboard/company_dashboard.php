@@ -181,9 +181,6 @@ $total_selected = $selected_stmt->fetchColumn();
                         Manage internships and find talented students
                     </p>
                 </div>
-                <div class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-3xl">
-                    🏢
-                </div>
                 <a href="../company/update_profile.php"
                     class="bg-primary text-primaryDark px-5 py-2 rounded-xl font-semibold">
                     ✏ Edit Profile
