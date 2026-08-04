@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include "../config/database.php";
 if (!isset($_SESSION['company_id'])) {
     header("Location: ../login.php");
@@ -41,17 +42,18 @@ if (isset($_POST['update'])) {
         company_address = :address
         WHERE company_id = :id
     ");
-    $update->execute([
-        ":company_name" => $company_name,
-        ":email" => $email,
-        ":contact_person" => $contact_person,
-        ":phone" => $phone,
-        ":website" => $website,
-        ":industry" => $industry,
-        ":company_size" => $company_size,
-        ":address" => $address,
-        ":id" => $company_id
-    ]);
+    $update = $pdo->prepare("
+    UPDATE companies SET
+    company_name = :company_name,
+    email = :email,
+    contact_person = :contact_person,
+    phone = :phone,
+    website = :website,
+    industry = :industry,
+    company_size = :company_size,
+    address = :address
+    WHERE company_id = :id
+");
     header("Location: ../dashboard/company_dashboard.php");
     exit();
 }
@@ -63,66 +65,102 @@ if (isset($_POST['update'])) {
 <head>
 
     <title>Update Company Profile</title>
-
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primaryDark: "#091D3E",
+                        primary: "#06B6D4",
+                        secondary: "#67E8F9",
+                    },
+                },
+            },
+        };
+    </script>
 
 </head>
 
-<body class="bg-slate-950 text-white min-h-screen p-10">
-    <div class="max-w-xl mx-auto bg-slate-900 p-8 rounded-3xl">
-        <h1 class="text-3xl font-bold mb-6">
-            Update Company Profile
-        </h1>
-        <form method="POST" class="space-y-4">
-            <input
-                name="company_name"
-                value="<?php echo $company['company_name']; ?>"
-                class="w-full p-3 rounded bg-slate-800"
-                placeholder="Company Name">
-            <input
-                name="email"
-                value="<?php echo $company['email']; ?>"
-                class="w-full p-3 rounded bg-slate-800"
-                placeholder="Email">
-            <input
-                name="contact_person"
-                value="<?php echo $company['contact_person']; ?>"
-                class="w-full p-3 rounded bg-slate-800"
-                placeholder="Contact Person">
-            <input
-                name="phone"
-                value="<?php echo $company['phone']; ?>"
-                class="w-full p-3 rounded bg-slate-800"
-                placeholder="Phone">
-            <input
-                name="website"
-                value="<?php echo $company['website']; ?>"
-                class="w-full p-3 rounded bg-slate-800"
-                placeholder="Website">
-            <input
-                name="industry"
-                value="<?php echo $company['industry']; ?>"
-                class="w-full p-3 rounded bg-slate-800"
-                placeholder="Industry">
-            <input
-                name="company_size"
-                value="<?php echo $company['company_size']; ?>"
-                class="w-full p-3 rounded bg-slate-800"
-                placeholder="Company Size">
-            <textarea
-                name="address"
-                class="w-full p-3 rounded bg-slate-800"
-                placeholder="Company Address"><?php echo $company['company_address']; ?></textarea>
-            <button
-                name="update"
-                class="bg-cyan-400 text-black px-6 py-3 rounded-xl font-bold">
-                Update Profile
-            </button>
-            <a href="../dashboard/company_dashboard.php"
-                class="block text-center bg-slate-700 px-6 py-3 rounded-xl">
-                Back to Dashboard
-            </a>
-        </form>
+<body class="bg-primaryDark text-white min-h-screen">
+
+    <div class="relative flex min-h-screen">
+        <!-- SIDEBAR -->
+        <?php include "../includes/company_sidebar.php"; ?>
+        <!-- MAIN -->
+        <main class="flex-1 p-6 md:p-10">
+            <!-- TOP BAR -->
+            <div class="flex justify-between items-center mb-10">
+                <div>
+                    <h1 class="text-3xl font-bold">
+                        Update
+                        <span class="text-primary">
+                            Company Profile
+                        </span>
+                        🏢
+                    </h1>
+                    <p class="text-slate-400 mt-2">
+                        Manage your company information
+                    </p>
+                </div>
+                <div class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-3xl">
+                    🏢
+                </div>
+            </div>
+            <!-- FORM -->
+            <div class="bg-slate-900 border border-cyan-900 rounded-3xl p-8">
+                <form method="POST" class="space-y-5">
+                    <input
+                        name="company_name"
+                        value="<?php echo $company['company_name']; ?>"
+                        class="w-full p-3 rounded-xl bg-slate-800 text-white"
+                        placeholder="Company Name">
+                    <input
+                        name="email"
+                        value="<?php echo $company['email']; ?>"
+                        class="w-full p-3 rounded-xl bg-slate-800 text-white"
+                        placeholder="Email">
+                    <input
+                        name="contact_person"
+                        value="<?php echo $company['contact_person']; ?>"
+                        class="w-full p-3 rounded-xl bg-slate-800 text-white"
+                        placeholder="Contact Person">
+                    <input
+                        name="phone"
+                        value="<?php echo $company['phone']; ?>"
+                        class="w-full p-3 rounded-xl bg-slate-800 text-white"
+                        placeholder="Phone">
+                    <input
+                        name="website"
+                        value="<?php echo $company['website']; ?>"
+                        class="w-full p-3 rounded-xl bg-slate-800 text-white"
+                        placeholder="Website">
+                    <input
+                        name="industry"
+                        value="<?php echo $company['industry']; ?>"
+                        class="w-full p-3 rounded-xl bg-slate-800 text-white"
+                        placeholder="Industry">
+                    <input
+                        name="company_size"
+                        value="<?php echo $company['company_size']; ?>"
+                        class="w-full p-3 rounded-xl bg-slate-800 text-white"
+                        placeholder="Company Size">
+                    <textarea
+                        name="address"
+                        class="w-full p-3 rounded-xl bg-slate-800 text-white"
+                        placeholder="Company Address"><?php echo $company['address']; ?></textarea>
+                    <button
+                        name="update"
+                        class="bg-cyan-400 text-black px-6 py-3 rounded-xl font-bold">
+                        Update Profile
+                    </button>
+                    <a href="../dashboard/company_dashboard.php"
+                        class="block text-center bg-slate-700 px-6 py-3 rounded-xl">
+                        Back to Dashboard
+                    </a>
+                </form>
+            </div>
+        </main>
     </div>
 </body>
 

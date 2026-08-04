@@ -6,122 +6,135 @@ if (!isset($_SESSION['student_id'])) {
     exit();
 }
 $student_id = $_SESSION['student_id'];
-
-// Get current student data
-$stmt = $pdo->prepare(
-    "SELECT * FROM students WHERE student_id = :id"
-);
+// Get student data
+$stmt = $pdo->prepare("
+SELECT * FROM students 
+WHERE student_id = :student_id
+");
 $stmt->execute([
-    ":id" => $student_id
+    ":student_id" => $student_id
 ]);
 $student = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!$student) {
-    echo "Student not found";
-    exit();
-}
-// Update information
-if (isset($_POST['update'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $full_name = $_POST['full_name'];
+    $email = $_POST['email'];
     $phone = $_POST['phone'];
-    $university = $_POST['university'];
-    $department = $_POST['department'];
-    $graduation_year = $_POST['graduation_year'];
-    $location = $_POST['location'];
     $skills = $_POST['skills'];
-    $resume = $student['resume'];
-    if (isset($_FILES['resume']) && $_FILES['resume']['name'] != "") {
-        $file_name = $_FILES['resume']['name'];
-        $tmp_name = $_FILES['resume']['tmp_name'];
-        $upload_folder = "../uploads/";
-        $resume = $upload_folder . $file_name;
-        move_uploaded_file($tmp_name, $resume);
-    }
     $update = $pdo->prepare("
     UPDATE students SET
     full_name = :full_name,
+    email = :email,
     phone = :phone,
-    university = :university,
-    department = :department,
-    graduation_year = :graduation_year,
-    location = :location,
-    skills = :skills,
-    resume = :resume
-    WHERE student_id = :id
+    skills = :skills
+    WHERE student_id = :student_id
     ");
     $update->execute([
         ":full_name" => $full_name,
+        ":email" => $email,
         ":phone" => $phone,
-        ":university" => $university,
-        ":department" => $department,
-        ":graduation_year" => $graduation_year,
-        ":location" => $location,
         ":skills" => $skills,
-        ":resume" => $resume,
-        ":id" => $student_id
+        ":student_id" => $student_id
     ]);
-    header("Location: ../dashboard/student_dashboard.php");
+    header("Location: update_profile.php");
     exit();
 }
 ?>
 
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+
     <title>Update Profile</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primaryDark: "#091D3E",
+                        primary: "#06B6D4"
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
-<body class="bg-slate-900 text-white min-h-screen p-10">
-    <div class="max-w-xl mx-auto bg-slate-800 p-8 rounded-3xl">
-        <h2 class="text-3xl font-bold mb-6">
-            Update Profile
-        </h2>
-        <form method="POST" enctype="multipart/form-data" class="space-y-4">
-            <input
-                name="full_name"
-                value="<?php echo $student['full_name']; ?>"
-                class="w-full p-3 rounded bg-slate-700"
-                placeholder="Full Name">
-            <input
-                name="phone"
-                value="<?php echo $student['phone']; ?>"
-                class="w-full p-3 rounded bg-slate-700"
-                placeholder="Phone">
-            <input
-                name="university"
-                value="<?php echo $student['university']; ?>"
-                class="w-full p-3 rounded bg-slate-700"
-                placeholder="University">
-            <input
-                name="department"
-                value="<?php echo $student['department']; ?>"
-                class="w-full p-3 rounded bg-slate-700"
-                placeholder="Department">
-            <input
-                name="graduation_year"
-                value="<?php echo $student['graduation_year']; ?>"
-                class="w-full p-3 rounded bg-slate-700"
-                placeholder="Graduation Year">
-            <input
-                name="location"
-                value="<?php echo $student['location']; ?>"
-                class="w-full p-3 rounded bg-slate-700"
-                placeholder="Location">
-            <textarea
-                name="skills"
-                class="w-full p-3 rounded bg-slate-700"
-                placeholder="Skills"><?php echo $student['skills']; ?></textarea>
-            <input
-                type="file"
-                name="resume"
-                class="w-full p-3 rounded bg-slate-700">
-            <button
-                name="update"
-                class="bg-cyan-400 text-black px-6 py-3 rounded-xl font-bold">
-                Update Profile
-            </button>
-        </form>
+<body class="bg-primaryDark text-white min-h-screen">
+    <div class="relative flex min-h-screen">
+        <!-- SIDEBAR -->
+        <?php include "../includes/student_sidebar.php"; ?>
+        <!-- MAIN -->
+        <main class="flex-1 p-6 md:p-10">
+            <!-- TOP BAR -->
+            <div class="flex justify-between items-center mb-10">
+                <div>
+                    <h1 class="text-3xl font-bold">
+                        Update
+                        <span class="text-primary">
+                            Profile
+                        </span>
+                    </h1>
+                    <p class="text-slate-400 mt-2">
+                        Manage your personal information
+                    </p>
+                </div>
+                <div class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-3xl">
+                    👤
+                </div>
+            </div>
+
+            <!-- FORM -->
+            <div class="bg-slate-900 border border-cyan-900 rounded-3xl p-8 max-w-3xl">
+                <form method="POST" class="space-y-5">
+                    <div>
+                        <label class="block mb-2">
+                            Full Name
+                        </label>
+                        <input
+                            type="text"
+                            name="full_name"
+                            value="<?= $student['full_name']; ?>"
+                            class="w-full px-4 py-3 rounded-xl text-black outline-none">
+                    </div>
+                    <div>
+                        <label class="block mb-2">
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            name="email"
+                            value="<?= $student['email']; ?>"
+                            class="w-full px-4 py-3 rounded-xl text-black outline-none">
+                    </div>
+                    <div>
+                        <label class="block mb-2">
+                            Phone
+                        </label>
+                        <input
+                            type="text"
+                            name="phone"
+                            value="<?= $student['phone']; ?>"
+                            class="w-full px-4 py-3 rounded-xl text-black outline-none">
+                    </div>
+                    <div>
+                        <label class="block mb-2">
+                            Skills
+                        </label>
+                        <textarea
+                            name="skills"
+                            class="w-full px-4 py-3 rounded-xl text-black outline-none"><?= $student['skills']; ?></textarea>
+                    </div>
+                    <button
+                        type="submit"
+                        class="bg-primary text-black px-6 py-3 rounded-xl font-bold">
+                        Save Change
+                    </button>
+                </form>
+            </div>
+        </main>
     </div>
 </body>
 

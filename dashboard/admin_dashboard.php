@@ -104,44 +104,7 @@ $users = $user_stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="fixed w-96 h-96 bg-primary/20 blur-3xl rounded-full top-0 left-0"></div>
     <div class="fixed w-96 h-96 bg-secondary/10 blur-3xl rounded-full bottom-0 right-0"></div>
     <div class="relative flex min-h-screen">
-        <!-- SIDEBAR -->
-        <aside class="hidden md:flex w-72 bg-slate-900/70 backdrop-blur-lg border-r border-cyan-900 flex-col p-6">
-            <div class="text-center mb-10">
-                <h1 class="text-3xl font-bold">
-                    Career<span class="text-primary">Match </span>
-                </h1>
-                <div class="w-16 h-[2px] bg-primary mx-auto mt-3"></div>
-            </div>
-            <nav class="space-y-4">
-                <a href="#" class="block px-4 py-3 rounded-xl bg-primary text-primaryDark font-semibold">
-                    🏠 Dashboard
-                </a>
-                <a href="/careermatch/admin/students.php" class="block px-4 py-3 rounded-xl hover:bg-slate-800">
-                    🎓 Students
-                </a>
-                <a href="/careermatch/admin/companies.php" class="block px-4 py-3 rounded-xl hover:bg-slate-800">
-                    🏢 Companies
-                </a>
-                <a href="/careermatch/admin/internships.php" class="block px-4 py-3 rounded-xl hover:bg-slate-800">
-                    💼 Internships
-                </a>
-                <a href="/careermatch/admin/applications.php" class="block px-4 py-3 rounded-xl hover:bg-slate-800">
-                    📄 Applications
-                </a>
-                <a href="/careermatch/admin/reports.php" class="block px-4 py-3 rounded-xl hover:bg-slate-800">
-                    📊 Reports
-                </a>
-                <a href="/careermatch/admin/settings.php" class="block px-4 py-3 rounded-xl hover:bg-slate-800">
-                    ⚙ Settings
-                </a>
-            </nav>
-            <div class="mt-auto">
-                <a href="../logout.php"
-                    class="block text-center bg-red-500/20 border border-red-500/40 py-3 rounded-xl hover:bg-red-500/40">
-                    Logout
-                </a>
-            </div>
-        </aside>
+        <?php include "../includes/admin_sidebar.php"; ?>
         <!-- MAIN CONTENT -->
         <main class="flex-1 p-6 md:p-10">
             <!-- HEADER -->

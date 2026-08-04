@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "../config/database.php";
 
+include "../config/database.php";
 if (!isset($_SESSION['company_id'])) {
     header("Location: ../login.php");
     exit();
@@ -29,7 +29,6 @@ ON applications.internship_id = internships.internship_id
 WHERE internships.company_id = :company_id
 ORDER BY applications.application_id DESC
 ");
-
 $stmt->execute([
     ":company_id" => $company_id
 ]);
@@ -42,92 +41,147 @@ $applicants = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <title>Applicants</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primaryDark: "#091D3E",
+                        primary: "#06B6D4",
+                        secondary: "#67E8F9",
+                    },
+                },
+            },
+        };
+    </script>
 </head>
 
-<body class="bg-slate-950 text-white min-h-screen">
-    <div class="max-w-6xl mx-auto p-8">
-        <div class="flex justify-between items-center mb-8">
-            <h1 class="text-3xl font-bold">
-                Applicants
-            </h1>
-            <a href="/careermatch/dashboard/company_dashboard.php"
-                class="bg-cyan-400 text-black px-5 py-3 rounded-xl font-bold">
-                Dashboard
-            </a>
-        </div>
-        <?php if (count($applicants) > 0): ?>
-            <div class="space-y-5">
-                <?php foreach ($applicants as $applicant): ?>
-                    <div class="bg-slate-900 border border-cyan-900 rounded-3xl p-6">
-                        <div class="flex justify-between">
-                            <div>
-                                <h2 class="text-xl font-bold text-cyan-400">
-                                    <?php echo htmlspecialchars($applicant['full_name']); ?>
-                                </h2>
-                                <p class="text-gray-400">
-                                    <?php echo htmlspecialchars($applicant['email']); ?>
+<body class="bg-primaryDark text-white min-h-screen">
+    <div class="relative flex min-h-screen">
+        <?php include "../includes/company_sidebar.php"; ?>
+        <main class="flex-1 p-6 md:p-10">
+            <!-- TOP BAR -->
+            <div class="flex justify-between items-center mb-10">
+                <div>
+                    <h1 class="text-3xl font-bold">
+                        Internship
+                        <span class="text-primary">
+                            Applicants
+                        </span>
+                        📄
+                    </h1>
+                    <p class="text-slate-400 mt-2">
+                        Review students who applied for your internships
+                    </p>
+                </div>
+                <div class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-3xl">
+                    🏢
+                </div>
+            </div>
+            <?php if (count($applicants) > 0): ?>
+                <div class="space-y-6">
+                    <?php foreach ($applicants as $applicant): ?>
+                        <div class="bg-slate-900 border border-cyan-900 rounded-3xl p-6">
+                            <h2 class="text-2xl font-bold text-cyan-400">
+                                <?= $applicant['full_name']; ?>
+                            </h2>
+                            <p class="mt-3 text-gray-300">
+                                Internship:
+                                <span class="text-white font-semibold">
+                                    <?= $applicant['title']; ?>
+                                </span>
+                            </p>
+                            <div class="mt-4 space-y-2 text-gray-300">
+                                <p>
+                                    <b>Email:</b>
+                                    <?= $applicant['email']; ?>
                                 </p>
-                                <p class="text-gray-400 mt-2">
-                                    University:
-                                    <?php echo $applicant['university']; ?>
+                                <p>
+                                    <b>Phone:</b>
+                                    <?= $applicant['phone']; ?>
                                 </p>
-                                <p class="text-gray-400">
-                                    Department:
-                                    <?php echo $applicant['department']; ?>
+                                <p>
+                                    <b>University:</b>
+                                    <?= $applicant['university']; ?>
                                 </p>
-                                <p class="text-gray-400">
-                                    Skills:
-                                    <?php echo $applicant['skills']; ?>
+                                <p>
+                                    <b>Department:</b>
+                                    <?= $applicant['department']; ?>
                                 </p>
-                                <p class="mt-3">
-                                    Applied For:
-                                    <span class="text-cyan-400">
-                                        <?php echo htmlspecialchars($applicant['title']); ?>
-                                    </span>
-                                </p>
-                                <p class="mt-2">
-                                    Status:
-                                    <span class="font-bold">
-                                        <?php echo htmlspecialchars($applicant['status']); ?>
-                                    </span>
-                                </p>
-                                <p class="mt-2 text-gray-400">
-                                    Applied Date:
-                                    <?php echo $applicant['application_date']; ?>
+                                <p>
+                                    <b>Skills:</b>
+                                    <?= $applicant['skills']; ?>
                                 </p>
                             </div>
-                            <div class="flex gap-3 items-center">
-                                <?php if (!empty($application['resume'])): ?>
-                                    <a href="../uploads/resumes/<?php echo $application['resume']; ?>"
+                            <div class="flex gap-3 mt-6">
+
+                                <?php if (!empty($applicant['resume'])): ?>
+
+                                    <a href="/careermatch/uploads/resumes/<?= $applicant['resume']; ?>"
                                         target="_blank"
-                                        class="bg-cyan-400 text-black px-4 py-2 rounded-lg">
+                                        class="bg-primary text-black px-5 py-3 rounded-xl font-semibold">
                                         View Resume
                                     </a>
-                                <?php else: ?>
-                                    <span class="text-gray-400">
-                                        No Resume Uploaded
-                                    </span>
+
                                 <?php endif; ?>
-                                <a href="update_application.php?id=<?php echo $applicant['application_id']; ?>&status=Accepted"
-                                    class="bg-green-500/20 text-green-400 px-4 py-2 rounded-xl">
-                                    Accept
-                                </a>
-                                <a href="update_application.php?id=<?php echo $applicant['application_id']; ?>&status=Rejected"
-                                    class="bg-red-500/20 text-red-400 px-4 py-2 rounded-xl">
-                                    Reject
-                                </a>
+                                <div class="flex gap-3 mt-6">
+
+                                    <?php if (!empty($applicant['resume'])): ?>
+
+                                        <a href="/careermatch/uploads/resumes/<?= $applicant['resume']; ?>"
+                                            target="_blank"
+                                            class="bg-primary text-black px-5 py-3 rounded-xl font-semibold">
+                                            View Resume
+                                        </a>
+
+                                    <?php endif; ?>
+
+
+                                    <?php if ($applicant['status'] == "Pending"): ?>
+
+                                        <a href="/careermatch/company/update_application.php?id=<?= $applicant['application_id']; ?>&status=Approved"
+                                            class="bg-green-500 text-white px-5 py-3 rounded-xl font-semibold">
+                                            Approve
+                                        </a>
+
+                                        <a href="/careermatch/company/update_application.php?id=<?= $applicant['application_id']; ?>&status=Rejected"
+                                            class="bg-red-500 text-white px-5 py-3 rounded-xl font-semibold">
+                                            Reject
+                                        </a>
+
+                                    <?php elseif ($applicant['status'] == "Accepted"): ?>
+
+                                        <span class="bg-green-500/20 border border-green-500/40 
+text-green-400 px-5 py-3 rounded-xl font-semibold">
+                                            ✅ Accepted
+                                        </span>
+
+
+                                    <?php elseif ($applicant['status'] == "Rejected"): ?>
+
+                                        <span class="bg-red-500/20 border border-red-500/40 text-red-400 px-5 py-3 rounded-xl font-semibold">
+                                            ❌ Rejected
+                                        </span>
+
+
+                                    <?php endif; ?>
+
+                                </div>
+
+
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php else: ?>
-            <div class="bg-slate-900 rounded-3xl p-8 text-center">
-                <p class="text-gray-400">
-                    No applicants yet.
-                </p>
-            </div>
-        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <div class="bg-slate-900 p-8 rounded-3xl text-center">
+                    <p class="text-gray-400">
+                        No students have applied yet.
+                    </p>
+                </div>
+            <?php endif; ?>
+        </main>
     </div>
 </body>
 

@@ -79,105 +79,108 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 </head>
 
-<body class="bg-primaryDark min-h-screen flex items-center justify-center text-cream">
-    <div class="bg-slate-900/70 border border-cyan-900 rounded-3xl p-8 w-full max-w-xl">
-        <h1 class="text-3xl font-bold mb-6">
-            Post Internship
-        </h1>
-        <form method="POST" class="space-y-4">
-            <input
-                type="text"
-                name="title"
-                placeholder="Internship Title"
-                class="w-full p-3 rounded-xl text-black"
-                required>
-            <select
-                name="category"
-                class="w-full p-3 rounded-xl text-black"
-                required>
-                <option value="">
-                    Select Category
-                </option>
-                <option value="Web Development">
-                    Web Development
-                </option>
-                <option value="Cloud & DevOps">
-                    Cloud & DevOps
-                </option>
-                <option value="Data Science">
-                    Data Science
-                </option>
-                <option value="AI">
-                    Artificial Intelligence
-                </option>
-                <option value="UI/UX Design">
-                    UI/UX Design
-                </option>
-                <option value="Networking">
-                    Networking
-                </option>
-                <option value="Software Testing">
-                    Software Testing
-                </option>
-                <option value="Graphic Design">
-                    Graphic Design
-                </option>
-            </select>
-            <textarea
-                name="description"
-                placeholder="Internship Description"
-                class="w-full p-3 rounded-xl text-black"
-                required></textarea>
-            <textarea
-                name="requirements"
-                placeholder="Required Skills (PHP, MySQL, JavaScript)"
-                class="w-full p-3 rounded-xl text-black"
-                required></textarea>
-            <input
-                type="text"
-                name="duration"
-                placeholder="Duration (Example: 3 Months)"
-                class="w-full p-3 rounded-xl text-black"
-                required>
-            <input
-                type="text"
-                name="location"
-                placeholder="Location"
-                class="w-full p-3 rounded-xl text-black"
-                required>
-            <input
-                type="date"
-                name="deadline"
-                class="w-full p-3 rounded-xl text-black"
-                required>
-            <select
-                name="internship_type"
-                class="w-full p-3 rounded-xl text-black"
-                required>
-                <option value="">
-                    Select Internship Type
-                </option>
-                <option value="Remote">
-                    Remote
-                </option>
-                <option value="On-site">
-                    On-site
-                </option>
-                <option value="Hybrid">
-                    Hybrid
-                </option>
-            </select>
-            <input
-                type="text"
-                name="stipend"
-                placeholder="Stipend (Example: 5000 BDT)"
-                class="w-full p-3 rounded-xl text-black"
-                required>
-            <button
-                class="bg-primary text-primaryDark px-6 py-3 rounded-xl font-bold w-full">
+<body class="bg-primaryDark text-white min-h-screen">
+    <div class="relative flex min-h-screen">
+        <?php include "../includes/company_sidebar.php"; ?>
+        <main class="flex-1 p-6 md:p-10">
+            <h1 class="text-3xl font-bold mb-6">
                 Post Internship
-            </button>
-        </form>
+            </h1>
+            <form method="POST" class="space-y-4">
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="Internship Title"
+                    class="w-full p-3 rounded-xl text-black"
+                    required>
+                <select
+                    name="category"
+                    class="w-full p-3 rounded-xl text-black"
+                    required>
+                    <option value="">
+                        Select Category
+                    </option>
+                    <option value="Web Development">
+                        Web Development
+                    </option>
+                    <option value="Cloud & DevOps">
+                        Cloud & DevOps
+                    </option>
+                    <option value="Data Science">
+                        Data Science
+                    </option>
+                    <option value="AI">
+                        Artificial Intelligence
+                    </option>
+                    <option value="UI/UX Design">
+                        UI/UX Design
+                    </option>
+                    <option value="Networking">
+                        Networking
+                    </option>
+                    <option value="Software Testing">
+                        Software Testing
+                    </option>
+                    <option value="Graphic Design">
+                        Graphic Design
+                    </option>
+                </select>
+                <textarea
+                    name="description"
+                    placeholder="Internship Description"
+                    class="w-full p-3 rounded-xl text-black"
+                    required></textarea>
+                <textarea
+                    name="requirements"
+                    placeholder="Required Skills (PHP, MySQL, JavaScript)"
+                    class="w-full p-3 rounded-xl text-black"
+                    required></textarea>
+                <input
+                    type="text"
+                    name="duration"
+                    placeholder="Duration (Example: 3 Months)"
+                    class="w-full p-3 rounded-xl text-black"
+                    required>
+                <input
+                    type="text"
+                    name="location"
+                    placeholder="Location"
+                    class="w-full p-3 rounded-xl text-black"
+                    required>
+                <input
+                    type="date"
+                    name="deadline"
+                    class="w-full p-3 rounded-xl text-black"
+                    required>
+                <select
+                    name="internship_type"
+                    class="w-full p-3 rounded-xl text-black"
+                    required>
+                    <option value="">
+                        Select Internship Type
+                    </option>
+                    <option value="Remote">
+                        Remote
+                    </option>
+                    <option value="On-site">
+                        On-site
+                    </option>
+                    <option value="Hybrid">
+                        Hybrid
+                    </option>
+                </select>
+                <input
+                    type="text"
+                    name="stipend"
+                    placeholder="Stipend (Example: 5000 BDT)"
+                    class="w-full p-3 rounded-xl text-black"
+                    required>
+                <button
+                    class="bg-primary text-primaryDark px-6 py-3 rounded-xl font-bold w-full">
+                    Post Internship
+                </button>
+            </form>
+        </main>
     </div>
 </body>
 

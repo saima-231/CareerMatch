@@ -140,7 +140,6 @@ if (isset($_POST['login'])) {
                     class="w-full mt-2 px-4 py-3 rounded-xl bg-slate-800 border border-cyan-900 focus:border-primary outline-none">
                     <option value="student">Student</option>
                     <option value="company">Company</option>
-                    <option value="admin">Admin</option>
                 </select>
             </div>
 
