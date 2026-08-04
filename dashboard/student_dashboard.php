@@ -76,7 +76,7 @@ $applications = $app_stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="w-16 h-[2px] bg-primary mx-auto mt-3"></div>
             </div>
             <nav class="space-y-4">
-                <a href="../dashboard/student_dashboard.php"
+                <a href="student_dashboard.php"
                     class="block px-4 py-3 rounded-xl bg-primary text-primaryDark font-semibold">
                     🏠 Profile
                 </a>
@@ -164,8 +164,7 @@ $applications = $app_stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h3 class="text-xl font-bold mb-5">
                     Search Internship
                 </h3>
-                <form action="../internships.php" method="GET"
-                    class="flex flex-col md:flex-row gap-4">
+                <form action="/internships.php" method="GET" class="flex flex-col md:flex-row gap-4">
                     <div class="relative flex-1">
                         <input
                             type="text"

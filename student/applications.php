@@ -30,6 +30,7 @@ $applications = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>My Applications</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -46,6 +47,7 @@ $applications = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     </script>
 </head>
+
 <body class="bg-primaryDark text-white min-h-screen">
     <div class="relative flex min-h-screen">
         <!-- SIDEBAR -->
@@ -95,7 +97,7 @@ $applications = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <p class="text-gray-400">
                         You have not applied for any internship yet.
                     </p>
-                    <a href="../student/internship.php"
+                    <a href="internship.php"
                         class="inline-block mt-5 bg-cyan-400 text-black px-5 py-3 rounded-xl font-bold">
                         Find Internship
                     </a>

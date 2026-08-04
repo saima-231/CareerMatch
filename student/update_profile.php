@@ -35,13 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ":skills" => $skills,
         ":student_id" => $student_id
     ]);
-    header("Location: update_profile.php");
+    header("Location: ../dashboard/student_dashboard.php");
     exit();
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <title>Update Profile</title>

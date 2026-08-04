@@ -1,5 +1,22 @@
 <?php
+session_start();
+
 include "config/database.php";
+
+$user = null;
+$profileLink = "#";
+
+if (isset($_SESSION['student_id'])) {
+    $user = $_SESSION['student_name'];
+    $profileLink = "dashboard/student_dashboard.php";
+} elseif (isset($_SESSION['company_id'])) {
+    $user = $_SESSION['company_name'];
+    $profileLink = "dashboard/company_dashboard.php";
+} elseif (isset($_SESSION['admin_id'])) {
+    $user = $_SESSION['admin_name'];
+    $profileLink = "dashboard/admin_dashboard.php";
+}
+
 
 // Get companies
 $stmt = $pdo->prepare("
@@ -14,7 +31,9 @@ $stmt = $pdo->prepare("
     WHERE company_status = 'Approved'
     ORDER BY company_id DESC
 ");
+
 $stmt->execute();
+
 $companies = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -48,30 +67,46 @@ $companies = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="fixed w-96 h-96 bg-secondary/10 blur-3xl rounded-full bottom-0 right-0"></div>
     <div class="relative">
         <!-- NAVBAR -->
-        <nav class="bg-slate-900/70 border-b border-cyan-900 px-8 py-5 flex justify-between items-center">
-            <h1 class="text-3xl font-bold">
-                Career<span class="text-primary">Match</span>
-            </h1>
-            <div class="space-x-6">
-                <a href="../index.php"
-                    class="hover:text-secondary">
-                    Home
-                </a>
-                <a href="../student/internship.php"
-                    class="hover:text-secondary">
-                    Internships
-                </a>
-                <a href="../companies.php"
-                    class="text-secondary">
-                    Companies
-                </a>
-                <a href="../login.php"
-                    class="bg-primary text-primaryDark px-5 py-2 rounded-xl font-semibold">
-                    Login
-                </a>
+        <nav class="bg-slate-900/70 border-b border-cyan-900 px-6 py-5">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-5">
+
+                <!-- Logo -->
+                <h1 class="text-3xl font-bold whitespace-nowrap">
+                    Career<span class="text-primary">Match</span>
+                </h1>
+                <!-- Menu -->
+                <div class="flex flex-wrap justify-center items-center gap-4 text-sm">
+                    <a href="index.php"
+                        class="hover:text-secondary whitespace-nowrap">
+                        Home
+                    </a>
+                    <a href="internships.php"
+                        class="hover:text-secondary whitespace-nowrap">
+                        Internships
+                    </a>
+                    <a href="companies.php"
+                        class="text-secondary whitespace-nowrap">
+                        Companies
+                    </a>
+                    <?php if ($user): ?>
+                        <a href="<?php echo $profileLink; ?>"
+                            class="flex items-center gap-2 hover:text-secondary whitespace-nowrap">
+                            👤
+                            <?php echo htmlspecialchars($user); ?>
+                        </a>
+                        <a href="logout.php"
+                            class="bg-red-500 text-white px-5 py-2 rounded-xl font-semibold whitespace-nowrap">
+                            Logout
+                        </a>
+                    <?php else: ?>
+                        <a href="login.php"
+                            class="bg-primary text-primaryDark px-5 py-2 rounded-xl font-semibold whitespace-nowrap">
+                            Login
+                        </a>
+                    <?php endif; ?>
+                </div>
             </div>
         </nav>
-
         <!-- CONTENT -->
         <main class="max-w-7xl mx-auto p-6 md:p-10">
             <h2 class="text-3xl font-bold mb-8">

@@ -4,7 +4,7 @@ include "../config/database.php";
 
 // Check admin login
 if (!isset($_SESSION['admin_id'])) {
-    header("Location: ../login.php");
+    header("Location: ../admin_login.php");
     exit();
 }
 $admin_id = $_SESSION['admin_id'];
