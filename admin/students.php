@@ -1,18 +1,37 @@
 <?php
 session_start();
+
 include "../config/database.php";
+
 if (!isset($_SESSION['admin_id'])) {
-    header("Location: ../login.php");
+    header("Location: ../admin_login.php");
     exit();
 }
 
-// Get all students
-$stmt = $pdo->prepare("
+// Delete student
+if (isset($_POST['delete_student_id'])) {
+
+    $student_id = $_POST['delete_student_id'];
+
+    $stmt = $pdo->prepare(
+        "DELETE FROM students WHERE student_id = :student_id"
+    );
+
+    $stmt->execute([
+        ":student_id" => $student_id
+    ]);
+
+    header("Location: students.php");
+    exit();
+}
+
+// Get students
+$stmt = $pdo->query("
     SELECT *
     FROM students
     ORDER BY student_id DESC
 ");
-$stmt->execute();
+
 $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -103,10 +122,21 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <?php echo htmlspecialchars($student['phone'] ?? 'N/A'); ?>
                                     </td>
                                     <td class="p-3">
-                                        <button
-                                            class="bg-red-500/20 text-red-400 px-4 py-2 rounded-lg">
-                                            Remove
-                                        </button>
+                                        <form method="POST" action="students.php"
+                                            onsubmit="return confirm('Are you sure you want to remove this student?');">
+
+                                            <input
+                                                type="hidden"
+                                                name="delete_student_id"
+                                                value="<?php echo $student['student_id']; ?>">
+
+                                            <button
+                                                type="submit"
+                                                class="bg-red-500/20 text-red-400 px-4 py-2 rounded-lg hover:bg-red-500/30">
+                                                Remove
+                                            </button>
+
+                                        </form>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
