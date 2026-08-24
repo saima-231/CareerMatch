@@ -188,8 +188,8 @@ $recent_applicants = $recent_stmt->fetchAll(PDO::FETCH_ASSOC);
         </aside>
 
         <!-- MAIN -->
-        <main class="flex-1 p-6 md:p-10">
-            <!-- HEADER -->
+        <main class="ml-72 min-h-screen p-6 md:p-10">
+             <!-- HEADER -->
             <div class="flex justify-between items-center mb-10">
                 <div>
                     <h2 class="text-3xl font-bold">

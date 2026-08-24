@@ -101,8 +101,7 @@ $applications = $app_stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </aside>
         <!-- MAIN -->
-        <main class="flex-1 p-6 md:p-10">
-            <!-- TOP BAR -->
+        <main class="ml-72 min-h-screen p-6 md:p-10">
             <div class="flex justify-between items-center mb-10">
                 <div>
                     <h2 class="text-3xl font-bold">
