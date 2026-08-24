@@ -84,11 +84,11 @@ if (isset($_POST['update'])) {
 
 <body class="bg-primaryDark text-white min-h-screen">
 
-    <div class="relative flex min-h-screen">
+    <div class="relative min-h-screen">
         <!-- SIDEBAR -->
         <?php include "../includes/company_sidebar.php"; ?>
         <!-- MAIN -->
-        <main class="flex-1 p-6 md:p-10">
+        <main class="ml-72 min-h-screen p-6 md:p-10">
             <!-- TOP BAR -->
             <div class="flex justify-between items-center mb-10">
                 <div>

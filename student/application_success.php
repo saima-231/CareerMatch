@@ -45,48 +45,32 @@ $internship = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
 <body class="bg-slate-950 text-white p-10">
-
-
     <div class="max-w-3xl mx-auto bg-slate-900 p-8 rounded-3xl">
-
-
         <h1 class="text-3xl font-bold text-cyan-400">
             <?php echo $internship['title']; ?>
         </h1>
-
-
         <p class="mt-3">
             Company:
             <?php echo $internship['company_name']; ?>
         </p>
-
-
         <p class="mt-3">
             Category:
             <?php echo $internship['category']; ?>
         </p>
-
-
         <p class="mt-3">
             Description:
             <br>
             <?php echo $internship['description']; ?>
         </p>
-
-
         <p class="mt-3">
             Required Skills:
             <br>
             <?php echo $internship['requirements']; ?>
         </p>
-
-
         <p class="mt-3">
             Duration:
             <?php echo $internship['duration']; ?>
         </p>
-
-
         <p class="mt-3">
             Stipend:
             <?php echo $internship['stipend']; ?>

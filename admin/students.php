@@ -43,11 +43,8 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://cdn.tailwindcss.com"></script>
 
     <head>
-
         <title>CareerMatch Admin</title>
-
         <script src="https://cdn.tailwindcss.com"></script>
-
         <script>
             tailwind.config = {
                 theme: {
@@ -62,28 +59,20 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 },
             };
         </script>
-
     </head>
 </head>
 
 <body class="bg-primaryDark text-cream min-h-screen">
-    <div class="relative flex min-h-screen">
-
-
+    <div class="relative min-h-screen">
         <?php include "../includes/admin_sidebar.php"; ?>
-
-
-        <main class="flex-1 p-6 md:p-10">
+        <main class="ml-72 min-h-screen p-6 md:p-10">
             <div class="flex justify-between items-center mb-8">
                 <h1 class="text-3xl font-bold mb-8">
-
                     Students
                     <span class="text-primary">
                         Management
                     </span>
-
                     🎓
-
                 </h1>
                 <a href="../dashboard/admin_dashboard.php"
                     class="bg-cyan-400 text-black px-5 py-3 rounded-xl font-bold">

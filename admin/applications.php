@@ -63,9 +63,9 @@ $applications = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body class="bg-primaryDark text-white min-h-screen">
-    <div class="relative flex min-h-screen">
+    <div class="relative min-h-screen">
         <?php include "../includes/admin_sidebar.php"; ?>
-        <main class="flex-1 p-6 md:p-10">
+        <main class="ml-72 min-h-screen p-6 md:p-10">
             <div class="flex justify-between items-center mb-8">
                 <h1 class="text-3xl font-bold">
                     Applications

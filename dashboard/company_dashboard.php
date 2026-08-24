@@ -145,51 +145,11 @@ $recent_applicants = $recent_stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Background Glow -->
     <div class="fixed w-96 h-96 bg-primary/20 blur-3xl rounded-full top-0 left-0"></div>
     <div class="fixed w-96 h-96 bg-secondary/10 blur-3xl rounded-full bottom-0 right-0"></div>
-    <div class="relative flex min-h-screen">
-        <!-- SIDEBAR -->
-        <aside class="hidden md:flex w-72 bg-slate-900/70 backdrop-blur-lg border-r border-cyan-900 flex-col p-6">
-            <!-- Logo -->
-            <div class="text-center mb-10">
-                <h1 class="text-3xl font-bold">
-                    Career<span class="text-primary"> Match </span>
-                </h1>
-                <div class="w-16 h-[2px] bg-primary mx-auto mt-3"></div>
-            </div>
-            <!-- Navigation -->
-            <nav class="space-y-4">
-                <a href="../dashboard/company_dashboard.php"
-                    class="block px-4 py-3 rounded-xl bg-primary text-primaryDark font-semibold">
-                    🏢 Profile
-                </a>
-                <a href="../company/post_internship.php"
-                    class="block px-4 py-3 rounded-xl hover:bg-slate-800">
-                    ➕ Post Internship
-                </a>
-                <a href="../company/manage_internships.php"
-                    class="block px-4 py-3 rounded-xl hover:bg-slate-800">
-                    📋 My Internships
-                </a>
-                <a href="../company/applicants.php"
-                    class="block px-4 py-3 rounded-xl hover:bg-slate-800">
-                    👥 Applicants
-                </a>
-                <a href=" ../index.php"
-                    class="block px-4 py-3 rounded-xl bg-primary text-primaryDark font-semibold">
-                    Back to Home
-                </a>
-            </nav>
-            <!-- Logout -->
-            <div class="mt-auto">
-                <a href="../logout.php"
-                    class="block text-center bg-red-500/20 border border-red-500/40 py-3 rounded-xl hover:bg-red-500/40">
-                    Logout
-                </a>
-            </div>
-        </aside>
-
+    <div class="relative min-h-screen">
+        <?php include "../includes/company_sidebar.php"; ?>
         <!-- MAIN -->
         <main class="ml-72 min-h-screen p-6 md:p-10">
-             <!-- HEADER -->
+            <!-- HEADER -->
             <div class="flex justify-between items-center mb-10">
                 <div>
                     <h2 class="text-3xl font-bold">

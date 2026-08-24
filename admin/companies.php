@@ -48,13 +48,9 @@ $companies = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body class="bg-primaryDark text-cream min-h-screen">
-    <div class="relative flex min-h-screen">
-
-
+    <div class="relative min-h-screen">
         <?php include "../includes/admin_sidebar.php"; ?>
-
-
-        <main class="flex-1 p-6 md:p-10">
+        <main class="ml-72 min-h-screen p-6 md:p-10">
             <div class="flex justify-between items-center mb-8">
                 <h1 class="text-3xl font-bold mb-8">
 
@@ -113,27 +109,19 @@ $companies = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 Reject
                                             </a>
                                         <?php else: ?>
-
                                             <?php if ($company['company_status'] == 'Approved'): ?>
-
                                                 <span class="text-green-400 font-semibold">
                                                     Approved
                                                 </span>
-
                                             <?php elseif ($company['company_status'] == 'Rejected'): ?>
-
                                                 <span class="text-red-400 font-semibold">
                                                     Rejected
                                                 </span>
-
                                             <?php else: ?>
-
                                                 <span class="text-yellow-400 font-semibold">
                                                     <?php echo $company['company_status']; ?>
                                                 </span>
-
                                             <?php endif; ?>
-
                                         <?php endif; ?>
                                     </td>
                                 </tr>

@@ -103,11 +103,11 @@ $users = $user_stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Glow Background -->
     <div class="fixed w-96 h-96 bg-primary/20 blur-3xl rounded-full top-0 left-0"></div>
     <div class="fixed w-96 h-96 bg-secondary/10 blur-3xl rounded-full bottom-0 right-0"></div>
-    <div class="relative flex min-h-screen">
+    <div class="relative min-h-screen">
         <?php include "../includes/admin_sidebar.php"; ?>
         <!-- MAIN CONTENT -->
         <main class="ml-72 min-h-screen p-6 md:p-10">
-            <!-- HEADER -->
+             <!-- HEADER -->
             <div class="flex justify-between items-center mb-10">
                 <div>
                     <h2 class="text-3xl font-bold">
