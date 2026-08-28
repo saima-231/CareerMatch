@@ -111,109 +111,70 @@ if (isset($_SESSION['student_id'])) {
         <div class="absolute inset-0 bg-black/20"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 w-full">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
-
-
                 <!-- LEFT SIDE -->
                 <div>
-
                     <div class="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-secondary text-sm">
                         Internship Management Platform
                     </div>
-
-
                     <h2 class="text-white text-4xl sm:text-5xl lg:text-6xl font-bold mt-6 leading-tight">
                         Launch Your
                         <span class="text-secondary">Career</span> Journey
                     </h2>
-
-
                     <p class="text-white/90 mt-6 text-base sm:text-lg max-w-xl">
                         Discover internships, connect with companies, and track every
                         application from one modern platform.
                     </p>
-
-
                     <!-- SEARCH -->
                     <div class="relative mt-8 max-w-xl">
-
-                        <!-- SEARCH -->
-                        <div class="relative mt-8 max-w-xl">
-
-                            <form action="/internships.php" method="GET"
-                                class="bg-white rounded-2xl p-2 flex flex-col sm:flex-row gap-2 shadow-2xl">
-
-                                <input
-                                    id="searchBox"
-                                    type="text"
-                                    name="search"
-                                    placeholder="Search internships..."
-                                    autocomplete="off"
-                                    class="flex-1 px-5 py-3 outline-none rounded-xl w-full text-black placeholder-gray-500" />
-
-                                <button
-                                    type="submit"
-                                    class="bg-primary text-white px-8 py-3 rounded-xl font-semibold hover:bg-cyan-500 transition">
-                                    Search
-                                </button>
-
-                            </form>
-
-
-                            <!-- Suggestions -->
-                            <div id="suggestions"
-                                class="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden hidden z-50">
-
-                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
-                                    💻 Web Development
-                                </div>
-
-                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
-                                    ☁️ Cloud & DevOps
-                                </div>
-
-                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
-                                    📊 Data Science
-                                </div>
-
-                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
-                                    🤖 Artificial Intelligence
-                                </div>
-
-                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
-                                    🎨 UI/UX Design
-                                </div>
-
-                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
-                                    🌐 Networking
-                                </div>
-
-                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
-                                    🧪 Software Testing
-                                </div>
-
-                                <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
-                                    🖌️ Graphic Design
-                                </div>
-
+                        <form action="/internships.php" method="GET"
+                            class="bg-white rounded-2xl p-2 flex flex-col sm:flex-row gap-2 shadow-2xl">
+                            <input
+                                id="searchBox"
+                                type="text"
+                                name="search"
+                                placeholder="Search internships..."
+                                autocomplete="off"
+                                class="flex-1 px-5 py-3 outline-none rounded-xl w-full text-black placeholder-gray-500" />
+                            <button
+                                type="submit"
+                                class="bg-primary text-white px-8 py-3 rounded-xl font-semibold hover:bg-cyan-500 transition">
+                                Search
+                            </button>
+                        </form>
+                        <!-- Suggestions -->
+                        <div id="suggestions"
+                            class="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden hidden z-50">
+                            <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                💻 Web Development
                             </div>
-
+                            <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                ☁️ Cloud & DevOps
+                            </div>
+                            <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                📊 Data Science
+                            </div>
+                            <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                🤖 Artificial Intelligence
+                            </div>
+                            <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                🎨 UI/UX Design
+                            </div>
+                            <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                🌐 Networking
+                            </div>
+                            <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                🧪 Software Testing
+                            </div>
+                            <div class="suggestion px-5 py-3 text-gray-800 hover:bg-cyan-100 cursor-pointer transition">
+                                🖌️ Graphic Design
+                            </div>
                         </div>
-
                     </div>
-
-
                 </div>
-
-
-
                 <!-- RIGHT SIDE -->
                 <div>
-
                     <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8">
-
                         <div class="grid grid-cols-2 gap-4">
-
-
                             <div class="bg-white rounded-2xl p-5">
                                 <h3 class="text-2xl sm:text-3xl font-bold text-primary">
                                     500+
@@ -222,8 +183,6 @@ if (isset($_SESSION['student_id'])) {
                                     Active Internships
                                 </p>
                             </div>
-
-
                             <div class="bg-white rounded-2xl p-5">
                                 <h3 class="text-2xl sm:text-3xl font-bold text-primary">
                                     200+
@@ -232,8 +191,6 @@ if (isset($_SESSION['student_id'])) {
                                     Companies
                                 </p>
                             </div>
-
-
                             <div class="bg-white rounded-2xl p-5">
                                 <h3 class="text-2xl sm:text-3xl font-bold text-primary">
                                     5K+
@@ -242,8 +199,6 @@ if (isset($_SESSION['student_id'])) {
                                     Students
                                 </p>
                             </div>
-
-
                             <div class="bg-white rounded-2xl p-5">
                                 <h3 class="text-2xl sm:text-3xl font-bold text-primary">
                                     1K+
@@ -252,15 +207,9 @@ if (isset($_SESSION['student_id'])) {
                                     Placements
                                 </p>
                             </div>
-
-
                         </div>
-
                     </div>
-
                 </div>
-
-
             </div>
     </section>
     <!-- ABOUT -->
@@ -280,43 +229,33 @@ if (isset($_SESSION['student_id'])) {
                 <!-- Students -->
                 <div
                     class="group p-8 rounded-3xl border border-cyan-400/50 shadow-[0_0_20px_rgba(34,211,238,0.15)] hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] hover:-translate-y-1 transition-all duration-300">
-
                     <div
                         class="w-14 h-14 bg-cyan-200/40 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition">
                         🎓
                     </div>
-
                     <h3 class="mt-5 font-semibold text-lg text-primaryDark">
                         For Students
                     </h3>
-
                     <p class="mt-3 text-gray-500">
                         Search internships, apply online, and track every application
                         from your personal dashboard.
                     </p>
-
                 </div>
-
                 <!-- Companies -->
                 <div
                     class="group p-8 rounded-3xl border border-emerald-400/50 shadow-[0_0_20px_rgba(52,211,153,0.15)] hover:shadow-[0_0_30px_rgba(52,211,153,0.3)] hover:-translate-y-1 transition-all duration-300">
-
                     <div
                         class="w-14 h-14 bg-emerald-200/40 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition">
                         🏢
                     </div>
-
                     <h3 class="mt-5 font-semibold text-lg text-primaryDark">
                         For Companies
                     </h3>
-
                     <p class="mt-3 text-gray-500">
                         Post internship opportunities, review applications, and recruit
                         qualified students with ease.
                     </p>
-
                 </div>
-
                 <!-- Career Growth -->
                 <div
                     class="group p-8 rounded-3xl border border-violet-400/50 shadow-[0_0_20px_rgba(167,139,250,0.15)] hover:shadow-[0_0_30px_rgba(167,139,250,0.3)] hover:-translate-y-1 transition-all duration-300">
@@ -334,13 +273,9 @@ if (isset($_SESSION['student_id'])) {
                         Build professional experience, develop new skills, and prepare
                         for a successful future career.
                     </p>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
     <!-- CATEGORIES -->
     <section class="py-16 md:py-24 lg:py-28">
@@ -489,41 +424,27 @@ if (isset($_SESSION['student_id'])) {
         const searchBox = document.getElementById("searchBox");
         const suggestions = document.getElementById("suggestions");
         const items = document.querySelectorAll(".suggestion");
-
-
         // Show suggestions when clicking search
         searchBox.addEventListener("focus", () => {
             suggestions.classList.remove("hidden");
         });
-
-
         // Select suggestion
         items.forEach(item => {
-
             item.addEventListener("click", () => {
-
                 // remove emoji before sending search
                 let value = item.innerText.replace(/^[^\w]+/, "");
-
                 searchBox.value = value;
-
                 suggestions.classList.add("hidden");
-
             });
-
         });
-
-
         // Hide when clicking outside
         document.addEventListener("click", (e) => {
-
             if (
                 !searchBox.contains(e.target) &&
                 !suggestions.contains(e.target)
             ) {
                 suggestions.classList.add("hidden");
             }
-
         });
     </script>
 </body>
