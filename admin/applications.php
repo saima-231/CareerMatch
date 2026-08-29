@@ -1,30 +1,23 @@
 <?php
 session_start();
-
 include "../config/database.php";
-
 if (!isset($_SESSION['admin_id'])) {
     header("Location: ../login.php");
     exit();
 }
-
 // Get all applications
 $stmt = $pdo->prepare("
 SELECT
-
     applications.application_id,
     applications.status,
     applications.application_date,
 
     students.full_name,
     students.email,
-
     internships.title,
-
     companies.company_name
 
-FROM applications
-
+    FROM applications
 JOIN students
 ON applications.student_id = students.student_id
 
